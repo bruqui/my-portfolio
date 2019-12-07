@@ -1,0 +1,10 @@
+@import '../../styles/_mdc-theme';
+@import '@material/checkbox/mdc-checkbox';
+
+.checkbox {
+
+    &--full-width {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+}

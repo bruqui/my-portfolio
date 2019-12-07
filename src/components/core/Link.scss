@@ -1,0 +1,25 @@
+@import '../../styles/_globals';
+
+.link {
+    text-decoration: none;
+
+    &--no-underline:hover {
+        text-decoration: none;
+    }
+
+    &--on-primary {
+        color: $color-on-primary;
+
+        &:hover {
+            color: $color-on-primary;
+        }
+    }
+
+    &--on-secondary {
+        color: $color-on-secondary;
+
+        &:hover {
+            color: $color-on-secondary;
+        }
+    }
+}

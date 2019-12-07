@@ -1,0 +1,28 @@
+@import '../../styles/_globals';
+
+.headline {
+
+    &--1 {
+        @include headline-1;
+    }
+
+    &--2 {
+        @include headline-2;
+    }
+
+    &--3 {
+        @include headline-3;
+    }
+
+    &--4 {
+        @include headline-4;
+    }
+
+    &--5 {
+        @include headline-5;
+    }
+
+    &--6 {
+        @include headline-6;
+    }
+}

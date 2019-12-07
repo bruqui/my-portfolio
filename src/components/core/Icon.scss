@@ -1,0 +1,9 @@
+@import '../../styles/_mdc-theme';
+@import "@material/ripple/common";
+@import "@material/ripple/mixins";
+
+.material-icons--ripple-surface {
+    @include mdc-ripple-surface;
+    @include mdc-ripple-radius-bounded;
+    @include mdc-states;
+}
