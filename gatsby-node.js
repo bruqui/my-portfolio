@@ -9,7 +9,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
         createNodeField({
             node,
             name: `slug`,
-            value: slug.toLowerCase(),
+            value: slug
         });
     }
 };
@@ -91,6 +91,7 @@ async function createComponentDocPages(createPage, graphql, reporter) {
             context: {
                 id: node.id,
                 name: node.displayName,
+                dir: node.fields.slug,
             },
         });
     });

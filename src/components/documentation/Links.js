@@ -52,8 +52,8 @@ export default function Links({className}) {
             const currentFileType = (fields)
                 ? `Components ${fields.slug.split('/').slice(1, 2)[0]}`
                 : 'Docs';
-            const toLink = (fields) ? fields.slug : `/docs/${name}`;
-            const link = <Link key={id} className="links__link" to={toLink}>{displayName || name}</Link>;
+            const toLink = (fields) ? `docs/${fields.slug}` : `/docs/${name}`;
+            const link = <Link key={id} className="links__link" to={toLink.toLowerCase()}>{displayName || name}</Link>;
             const firstSection = (!fileType && currentFileType)
                 ? <Heading level={3} size={6}>{currentFileType}</Heading>
                 : null;

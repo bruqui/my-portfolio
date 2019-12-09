@@ -17,7 +17,6 @@ import CodeBlock from './CodeBlock';
 import Heading from '../core/Heading';
 import Icon from '../core/Icon';
 import IconButton from '../core/IconButton';
-import Layout from '../layout/Layout';
 import PropsTable from './PropsTable';
 import TextField from '../core/TextField';
 
@@ -56,28 +55,24 @@ export default function Mdx({
     /* eslint-enable */
 
     return (
-        <div className="mdx">
+        <DocsLayout className="mdx">
             <MDXProvider components={{...components, ...shortcodes}}>
-                <Layout fullWidth>
-                    <DocsLayout>
-                        <h2 className="headline-5 mdx__headline">{title}</h2>
-                        {descriptionMdx && <MDXRenderer>{descriptionMdx}</MDXRenderer>}
-                        {propsMetadata && <PropsTable propsMetadata={propsMetadata} />}
-                        {
-                            (mdx && mdx.body) && <MDXRenderer>{mdx.body}</MDXRenderer>
-                        }
-                    </DocsLayout>
-                </Layout>
+                <h2 className="headline-5 mdx__headline">{title}</h2>
+                {descriptionMdx && <MDXRenderer>{descriptionMdx}</MDXRenderer>}
+                {propsMetadata && <PropsTable propsMetadata={propsMetadata} />}
+                {
+                    (mdx && mdx.body) && <MDXRenderer>{mdx.body}</MDXRenderer>
+                }
             </MDXProvider>
-        </div>
+        </DocsLayout>
     );
 }
 
 Mdx.propTypes = {
     descriptionMdx: PropTypes.string,
-    propsMetadata: PropTypes.object,
+    propsMetadata: PropTypes.array,
     mdx: PropTypes.shape({
-        body: PropTypes.object,
+        body: PropTypes.string,
     }),
     title: PropTypes.string,
 };

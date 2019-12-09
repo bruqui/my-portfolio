@@ -7,8 +7,8 @@ import './Main.scss';
 export default function Main({className, children, fullWidth}) {
     function getClass() {
         return classnames({
-            'main-container': true,
-            'main-container--full-width': fullWidth,
+            main: true,
+            'main--full-width': fullWidth,
         }, className);
     }
 

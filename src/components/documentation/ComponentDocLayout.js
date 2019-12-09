@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import {get} from 'lodash';
 
+import GithubIcon from '../core/GithubIcon';
 import Mdx from './Mdx';
 import SEO from '../app/seo';
+
+import './ComponentDocLayout.scss';
 
 // eslint-disable-next-line
 export const pageQuery = graphql`
@@ -41,32 +44,39 @@ export const pageQuery = graphql`
     }
 `;
 
+/* eslint-disable max-len */
 // eslint-disable-next-line
-export default function ComponentDocLayout({data: {file, componentMetadata}, pageContext}) {
+export default function ComponentDocLayout({data: {file, componentMetadata}, pageContext: {dir}}) {
     const mdx = get(file, 'childMdx', {});
     const {description, displayName, props} = componentMetadata;
+    const githubUrl = 'https://github.com/bruqui/my-portfolio/blob/master/src/components';
 
     return (
-        <React.Fragment>
+        <div className="compoennt-doc-layout">
             <SEO title={`Site Docs: ${displayName}`} />
+            <a href={`${githubUrl}${dir.substring(0, dir.length - 1)}.js`}>
+                <GithubIcon className="component-doc-layout__icon" />
+            </a>
             <Mdx
                 descriptionMdx={description.childMdx.body}
                 mdx={mdx}
                 propsMetadata={props}
                 title={displayName}
             />
-        </React.Fragment>
+        </div>
     );
 }
 
 ComponentDocLayout.propTypes = {
     data: PropTypes.shape({
-        file: PropTypes.string,
+        file: PropTypes.object,
         componentMetadata: PropTypes.shape({
-            description: PropTypes.string,
+            description: PropTypes.object,
             displayName: PropTypes.string,
-            props: PropTypes.object,
+            props: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
         }),
     }),
-    pageContext: PropTypes.object,
+    pageContext: PropTypes.shape({
+        dir: PropTypes.string,
+    }),
 };

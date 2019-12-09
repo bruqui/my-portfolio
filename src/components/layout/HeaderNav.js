@@ -11,21 +11,12 @@ export default function HeaderNav() {
     const [selected, setSelected] = useState(null);
     const links = [
         {
-            display: 'events',
+            display: 'home',
             to: '/',
         },
         {
-            authenticated: true,
-            display: 'create event',
-            to: '/private/create-event',
-        },
-        {
-            display: 'about',
-            to: '/about',
-        },
-        {
-            display: 'contact us',
-            to: '/contact-us',
+            display: 'docs',
+            to: '/docs',
         },
     ];
 
