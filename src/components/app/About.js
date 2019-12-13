@@ -12,7 +12,7 @@ import './About.scss';
 
 export default function About() {
     return (
-        <CenteredContent className="about" elementType="section">
+        <CenteredContent className="about" id="about" elementType="section">
             <SEO title="About" />
             <Heading level={2}>About</Heading>
             <dl className="about__dl">

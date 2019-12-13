@@ -19,6 +19,14 @@ export default function HeaderNav() {
             to: '/',
         },
         {
+            display: 'about',
+            to: '/about',
+        },
+        {
+            display: 'projects',
+            to: '/projects',
+        },
+        {
             display: 'docs',
             to: '/docs',
         },
@@ -31,21 +39,22 @@ export default function HeaderNav() {
     }
 
     // eslint-disable-next-line
-    function renderLink({authenticated, display, to}) {
-        const link = (
-            <Link
-                className="header-nav__link"
-                key={`link_${display}`}
-                getProps={handleGetLinkProps}
-                to={to}
-            >
-                {display}
-            </Link>
-        );
+    function renderLink({authenticated, display, href, to}) {
+        const linkProps = {
+            key: `link_${display}`,
+            className: 'header-nav__link',
+        };
+        const linkContent = (to)
+            ? (
+                <Link {...linkProps} getProps={handleGetLinkProps} to={to}>
+                    {display}
+                </Link>
+            )
+            : <a {...linkProps} href={href}>{display}</a>;
 
         return (handhelds)
-            ? <MenuItem key={display} selected={(selected === to)}>{link}</MenuItem>
-            : link;
+            ? <MenuItem key={display} selected={(selected === to)}>{linkContent}</MenuItem>
+            : linkContent;
     }
 
     function getClass() {

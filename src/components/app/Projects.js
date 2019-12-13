@@ -93,7 +93,7 @@ export default function Projects() {
     // }
 
     return (
-        <CenteredContent className="projects" elementType="section">
+        <CenteredContent className="projects" id="projects" elementType="section">
             <SEO title="Projects" />
             <Heading level={2}>Projects</Heading>
             <div className="projects__project-container">

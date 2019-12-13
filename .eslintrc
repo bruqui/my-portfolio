@@ -29,7 +29,7 @@
     "eol-last": 0,
     "import/no-named-as-default": 0,
     "import/no-unused-modules": [1, {
-      "ignoreExports": ["src/pages/"],
+      "ignoreExports": ["src/pages/*"],
       "src": ["src/"],
       "unusedExports": true,
     }],
