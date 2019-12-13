@@ -1,64 +1,38 @@
-import React, {useEffect, useCallback, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import {get} from 'lodash';
 
-import Heading from '../core/Heading';
-import Link from '../core/Link';
 import HeaderNav from './HeaderNav';
-
+import HeaderFixed from './HeaderFixed';
 
 import './Header.scss';
 
+/**
+    This component will either just render a header or use the HeaderFixed
+    component to determine if the header needs to be fixed at the top or not.
+    It uses render functions to prevent the HeaderFixed component from rendering
+    at all if the fixed prop hasn't been set to true.
+*/
+
 export default function Header({className, fixed, siteTitle}) {
-    const [headerShouldFixed, setHeaderShouldFixed] = useState(false);
-    const [currentNode, setCurrentNode] = useState();
-
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [currentNode]);
-
-    const headerRef = useCallback((node) => {
-        if (node) {
-            setCurrentNode(node);
-        }
-    }, []);
-
-    function handleScroll() {
-        const headerOffsetTop = get(currentNode, 'offsetTop');
-
-        if (headerOffsetTop || headerOffsetTop === 0) {
-            setHeaderShouldFixed(window.scrollY >= headerOffsetTop);
-        }
+    function renderHeader() {
+        return (
+            <header className="header">
+                <HeaderNav />
+            </header>
+        );
     }
 
-    function getClass() {
-        return classnames({
-            header: true,
-            'header--fixed': fixed && headerShouldFixed,
-        });
+    function renderHeaderFixed() {
+        return <HeaderFixed renderHeader={renderHeader} />;
     }
-    return (
-        <header className={getClass()} ref={headerRef}>
-            <HeaderNav />
-            <Heading className="header__heading" level={1}>
-                <Link className="header__link" to="/" noUnderline onPrimary>
-                    Portfolio
-                </Link>
-            </Heading>
-        </header>
-    );
+
+    return (fixed)
+        ? renderHeaderFixed()
+        : renderHeader();
 }
 
 Header.propTypes = {
     className: PropTypes.string,
     /** Indicates whether the header should be fixed or not */
     fixed: PropTypes.bool,
-    siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-    siteTitle: '',
 };

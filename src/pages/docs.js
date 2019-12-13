@@ -20,18 +20,18 @@ export const pageQuery = graphql`
     }
 `;
 
-export default function Docs({data: {file}}) {
+export default function DocsPage({data: {file}}) {
     const mdx = get(file, 'childMdx', {});
 
     return (
-        <DocsLayout className="docs">
+        <DocsLayout className="docs-page">
             <SEO title="Docs" />
             <Mdx title={file.name} mdx={mdx} />
         </DocsLayout>
     );
 }
 
-Docs.propTypes = {
+DocsPage.propTypes = {
     data: PropTypes.shape({
         file: PropTypes.object,
     }),

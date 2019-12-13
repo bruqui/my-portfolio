@@ -1,8 +1,6 @@
 @import '../../styles/_globals.scss';
 
 .header-nav {
-    margin: 5px 0 0 5px;
-
     &__link {
         color: $color-on-primary;
         display: inline-block;
@@ -16,7 +14,7 @@
     &--device {
         display: inline-block;
 
-        &.header-nav {
+        .header-nav {
 
             &__link {
                 color: $color-on-surface;

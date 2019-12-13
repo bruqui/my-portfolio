@@ -1,5 +1,4 @@
 import React from 'react';
-import Fade from 'react-reveal/Fade';
 import {graphql, useStaticQuery} from 'gatsby';
 import Image from 'gatsby-image';
 
@@ -45,12 +44,8 @@ export default function IndexPage() {
                     <p>My superpower is frontend development with React.</p>
                 </div>
             </div>
-            <Fade right>
-                <About />
-            </Fade>
-            <Fade left>
-                <Projects />
-            </Fade>
+            <About />
+            <Projects />
         </Layout>
     );
 }

@@ -4,32 +4,8 @@
     background-color: $color-primary;
     background: $gradient;
     color: $pure-white;
+    padding: 10px;
     position: relative;
-
-    &__heading {
-        display: inline-block;
-        font-size: 1rem;
-        margin: 0;
-        padding: .25rem .5rem;
-    }
-
-    &__logo {
-        height: 29px;
-        margin: 0;
-        width: auto;
-    }
-
-    &__menu {
-        background-color: transparent;
-        border: none;
-        display: none;
-        outline: none;
-
-        @media screen and (max-width: $device-width) {
-            display: inline-block;
-        }
-
-    }
 
     &__right {
         padding: 3px 10px;
@@ -37,33 +13,5 @@
         right: 0;
         text-align: right;
         top: 0;
-    }
-
-    &__user-popup {
-        background-color: $pure-white;
-        color: #333;
-        padding: 5px;
-        top: 30px;
-        width: 100px;
-    }
-
-    &__user-menu {
-        margin: 0;
-        list-style-type: none;
-        padding: 0;
-        text-align: left;
-    }
-
-    &__user-button {
-        background-color: transparent;
-        border: none;
-        outline: none;
-    }
-
-    &--fixed {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: $z-index-header;
     }
 }

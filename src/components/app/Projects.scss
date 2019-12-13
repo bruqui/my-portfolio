@@ -1,0 +1,61 @@
+@import '../../styles/globals';
+$content-height: 298px;
+
+.projects {
+
+    &__project-container {
+        background-color: #ececec;
+        display: grid;
+        grid-gap: 0;
+        grid-template-areas:
+            'pipelineRxImage pipelineRxDescription'
+            'southwestDescription southwestImage';
+        justify-items: center;
+        align-items: center;
+        @include respond-to(handhelds) {
+            grid-template-areas:
+                'pipelineRxImage'
+                'pipelineRxDescription'
+                'southwestImage'
+                'southwestDescription';
+        }
+    }
+
+    &__content {
+        min-height: $content-height;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+
+        &#pipelineRxImage {
+            grid-area: pipelineRxImage
+        }
+
+        &#southwestImage {
+            grid-area: southwestImage
+        }
+    }
+
+    &__detail {
+        background-color: $color-secondary;
+        color: $color-on-primary;
+        padding: 5%;
+        text-shadow: 1px 1px 8px darken($color-secondary, 40%);
+
+        &:nth-child(2) {
+            background-color: $color-primary;
+            text-shadow: 1px 1px 8px darken($color-primary, 40%);
+        }
+
+        &#pipelineRxDescription {
+            grid-area: pipelineRxDescription
+        }
+
+        &#southwestDescription {
+            grid-area: southwestDescription
+        }
+    }
+}

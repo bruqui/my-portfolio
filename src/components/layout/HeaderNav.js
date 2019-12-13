@@ -12,7 +12,7 @@ import './HeaderNav.scss';
 
 export default function HeaderNav() {
     const [selected, setSelected] = useState(null);
-    const {width} = useContext(SizingContext);
+    const {handhelds} = useContext(SizingContext);
     const links = [
         {
             display: 'home',
@@ -43,25 +43,22 @@ export default function HeaderNav() {
             </Link>
         );
 
-        return (isDevice())
+        return (handhelds)
             ? <MenuItem key={display} selected={(selected === to)}>{link}</MenuItem>
             : link;
-    }
-
-    function isDevice() {
-        return (width < 300);
     }
 
     function getClass() {
         return classnames({
             'header-nav': true,
-            'header-nav--device': isDevice(),
+            'header-nav--device': handhelds,
         });
     }
+
     return (
         <nav className={getClass()}>
             {
-                (isDevice())
+                (handhelds)
                     ? (
                         <SimpleMenu
                             handle={<Icon role="button" icon="menu" onPrimary />}

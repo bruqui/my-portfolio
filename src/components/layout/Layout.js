@@ -28,15 +28,8 @@ export default function Layout({
         }
     `);
 
-    function getClass() {
-        return classnames({
-            layout: true,
-            'layout--header-fixed': headerFixed,
-        }, className);
-    }
-
     return (
-        <section className={getClass()}>
+        <section className={classnames('layout', className)}>
             {preHeader}
             <Header className="layout__header" siteTitle={data.site.siteMetadata.title} fixed={headerFixed} />
             <Main className="layout__main" fullWidth={fullWidth}>{children}</Main>
