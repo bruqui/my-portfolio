@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import {get} from 'lodash';
 
+import DocsLayout from './DocsLayout';
 import GithubIcon from '../core/GithubIcon';
 import Mdx from './Mdx';
 import SEO from '../app/seo';
@@ -52,7 +53,7 @@ export default function ComponentDocLayout({data: {file, componentMetadata}, pag
     const githubUrl = 'https://github.com/bruqui/my-portfolio/blob/master/src/components';
 
     return (
-        <div className="compoennt-doc-layout">
+        <DocsLayout className="compoennt-doc-layout">
             <SEO title={`Site Docs: ${displayName}`} />
             <a href={`${githubUrl}${dir.substring(0, dir.length - 1)}.js`}>
                 <GithubIcon className="component-doc-layout__icon" />
@@ -63,7 +64,7 @@ export default function ComponentDocLayout({data: {file, componentMetadata}, pag
                 propsMetadata={props}
                 title={displayName}
             />
-        </div>
+        </DocsLayout>
     );
 }
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import {get} from 'lodash';
 
+import DocsLayout from './DocsLayout';
 import Mdx from './Mdx';
 import SEO from '../app/seo';
 
@@ -21,18 +22,18 @@ export const pageQuery = graphql`
 `;
 
 // eslint-disable-next-line
-export default function ComponentDocLayout({data: {file}}) {
+export default function DocLayout({data: {file}}) {
     const mdx = get(file, 'childMdx', {});
 
     return (
-        <React.Fragment>
+        <DocsLayout className="doc-layout">
             <SEO title={file.name} />
             <Mdx title={file.name} mdx={mdx} />
-        </React.Fragment>
+        </DocsLayout>
     );
 }
 
-ComponentDocLayout.propTypes = {
+DocLayout.propTypes = {
     data: PropTypes.shape({
         file: PropTypes.string,
     }),

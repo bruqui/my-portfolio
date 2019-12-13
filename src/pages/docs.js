@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {get} from 'lodash';
 import {graphql} from 'gatsby';
 
+import DocsLayout from '../components/documentation/DocsLayout';
 import Mdx from '../components/documentation/Mdx';
 import SEO from '../components/app/seo';
 
@@ -23,10 +24,10 @@ export default function Docs({data: {file}}) {
     const mdx = get(file, 'childMdx', {});
 
     return (
-        <div className="docs">
+        <DocsLayout className="docs">
             <SEO title="Docs" />
             <Mdx title={file.name} mdx={mdx} />
-        </div>
+        </DocsLayout>
     );
 }
 

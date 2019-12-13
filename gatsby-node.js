@@ -9,7 +9,7 @@ exports.onCreateNode = ({node, getNode, actions}) => {
         createNodeField({
             node,
             name: `slug`,
-            value: slug
+            value: slug,
         });
     }
 };
@@ -65,7 +65,7 @@ async function createComponentDocPages(createPage, graphql, reporter) {
                     node {
                         displayName
                         fields {
-                                slug
+                            slug
                         }
                         id
                     }

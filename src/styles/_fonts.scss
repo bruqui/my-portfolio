@@ -1,4 +1,5 @@
 $font: 'Ubuntu', 'Helvetica', 'Arial', sans-serif;
+$heading-font: 'Iceland', 'Ubuntu', 'Helvetica', 'Arial', sans-serif;
 $title: 1.3rem;
 $hint-txt: .7rem;
 $input-txt: .9rem;
@@ -11,42 +12,42 @@ $font-small-nunito: 500 14px 'Nunito';
 @mixin headline-1 {
     font-size: 6rem;
     letter-spacing: -1.5;
-    font-family: $font;
+    font-family: $heading-font;
     font-weight: 400;
 }
 
 @mixin headline-2 {
     font-size: 3.75rem;
     letter-spacing: -.5;
-    font-family: $font;
+    font-family: $heading-font;
     font-weight: 300;
 }
 
 @mixin headline-3 {
     font-size: 3rem;
     letter-spacing: 0;
-    font-family: $font;
+    font-family: $heading-font;
     font-weight: 400;
 }
 
 @mixin headline-4 {
     font-size: 2.125rem;
     letter-spacing: .25;
-    font-family: $font;
+    font-family: $heading-font;
     font-weight: 400;
 }
 
 @mixin headline-5 {
     font-size: 1.5rem;
     letter-spacing: 0;
-    font-family: $font;
+    font-family: $heading-font;
     font-weight: 400;
 }
 
 @mixin headline-6 {
     font-size: 1.25rem;
     letter-spacing: 0;
-    font-family: $font;
+    font-family: $heading-font;
     font-weight: 500;
 }
 

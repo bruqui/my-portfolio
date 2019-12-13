@@ -11,7 +11,13 @@ import './Layout.scss';
 import '../../styles/index.scss';
 import '../../styles/material-icons.scss';
 
-export default function Layout({children, className, fullWidth}) {
+export default function Layout({
+    children,
+    className,
+    fullWidth,
+    headerFixed,
+    preHeader,
+}) {
     const data = useStaticQuery(graphql`
         query SiteTitleQuery {
             site {
@@ -22,9 +28,17 @@ export default function Layout({children, className, fullWidth}) {
         }
     `);
 
+    function getClass() {
+        return classnames({
+            layout: true,
+            'layout--header-fixed': headerFixed,
+        }, className);
+    }
+
     return (
-        <section className={classnames(className, 'layout')}>
-            <Header className="layout__header" siteTitle={data.site.siteMetadata.title} />
+        <section className={getClass()}>
+            {preHeader}
+            <Header className="layout__header" siteTitle={data.site.siteMetadata.title} fixed={headerFixed} />
             <Main className="layout__main" fullWidth={fullWidth}>{children}</Main>
             <Footer className="layout__footer" />
         </section>
@@ -36,4 +50,10 @@ Layout.propTypes = {
     className: PropTypes.string,
     /** Passes prop to Main which sets the main container to 100% wide. */
     fullWidth: PropTypes.bool,
+    headerFixed: PropTypes.bool,
+    preHeader: PropTypes.node,
+};
+
+Layout.defaultProps = {
+    preHeader: null,
 };

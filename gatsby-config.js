@@ -5,8 +5,15 @@ module.exports = {
         author: `@bruqui`,
     },
     plugins: [
-        `gatsby-transformer-react-docgen`,
         `@bruqui/gatsby-plugin-react-helmet-async`,
+        {
+            resolve: 'gatsby-plugin-web-font-loader',
+            options: {
+                google: {
+                    families: ['Ubuntu:300,400,500', 'Material Icons', 'Iceland'],
+                },
+            },
+        },
         {
             resolve: `gatsby-plugin-sass`,
             options: {
@@ -30,6 +37,13 @@ module.exports = {
             },
         },
         {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                name: 'pageContent',
+                path: './src/page-content/',
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `images`,
@@ -44,13 +58,14 @@ module.exports = {
                 name: `gatsby-starter-default`,
                 short_name: `starter`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
+                background_color: `#FFFFFF`,
+                theme_color: `#1D09C0`,
                 display: `minimal-ui`,
-                icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+                icon: `src/images/smithcasa-icon.png`, // This path is relative to the root of the site.
             },
         },
         `gatsby-plugin-eslint`,
+        `gatsby-transformer-react-docgen`,
 
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline

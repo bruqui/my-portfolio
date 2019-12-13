@@ -12,7 +12,6 @@ import {
 } from '@rmwc/menu';
 
 import Button from '../core/Button';
-import DocsLayout from './DocsLayout';
 import CodeBlock from './CodeBlock';
 import Heading from '../core/Heading';
 import Icon from '../core/Icon';
@@ -55,16 +54,14 @@ export default function Mdx({
     /* eslint-enable */
 
     return (
-        <DocsLayout className="mdx">
-            <MDXProvider components={{...components, ...shortcodes}}>
-                <h2 className="headline-5 mdx__headline">{title}</h2>
-                {descriptionMdx && <MDXRenderer>{descriptionMdx}</MDXRenderer>}
-                {propsMetadata && <PropsTable propsMetadata={propsMetadata} />}
-                {
-                    (mdx && mdx.body) && <MDXRenderer>{mdx.body}</MDXRenderer>
-                }
-            </MDXProvider>
-        </DocsLayout>
+        <MDXProvider components={{...components, ...shortcodes}}>
+            {title && <Heading level={2} size={5} className="mdx__headline">{title}</Heading>}
+            {descriptionMdx && <MDXRenderer>{descriptionMdx}</MDXRenderer>}
+            {propsMetadata && <PropsTable propsMetadata={propsMetadata} />}
+            {
+                (mdx && mdx.body) && <MDXRenderer>{mdx.body}</MDXRenderer>
+            }
+        </MDXProvider>
     );
 }
 

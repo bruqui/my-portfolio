@@ -1,7 +1,13 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+/* eslint-disable import/prefer-default-export */
+import React from 'react';
+import PropTypes from 'prop-types';
 
-// You can delete this file if you're not using it
+import Providers from './src/components/providers/Providers';
+
+export function wrapRootElement({element}) {
+    return <Providers>{element}</Providers>;
+}
+
+wrapRootElement.propTypes = {
+    element: PropTypes.node,
+};
