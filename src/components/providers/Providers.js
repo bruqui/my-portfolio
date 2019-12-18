@@ -10,13 +10,7 @@ need to wrap the root element of the app
 */
 /* eslint-disable import/no-unused-modules */
 export default function Providers({children}) {
-    return (
-        <SizingProvider>
-            <ScrollProvider>
-                {children}
-            </ScrollProvider>
-        </SizingProvider>
-    );
+    return children;
 }
 
 Providers.propTypes = {

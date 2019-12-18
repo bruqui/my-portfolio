@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import {ScrollContext} from '../providers/ScrollProvider';
-import {SizingContext} from '../providers/SizingProvider';
+// import {ScrollContext} from '../providers/ScrollProvider';
+// import {SizingContext} from '../providers/SizingProvider';
 
 import './HeaderFixed.scss';
 
@@ -16,9 +16,10 @@ import './HeaderFixed.scss';
 */
 
 export default function HeaderFixed({renderHeader}) {
-    const {scrollY} = useContext(ScrollContext);
-    const {height} = useContext(SizingContext);
-    const headerIsFixed = (scrollY > (height * 0.9));
+    // const {scrollY} = useContext(ScrollContext);
+    // const {height} = useContext(SizingContext);
+    // const headerIsFixed = (scrollY > (height * 0.9));
+    const headerIsFixed = true;
 
     function getClass() {
         return classnames({

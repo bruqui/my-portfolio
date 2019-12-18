@@ -6,13 +6,14 @@ import {SimpleMenu, MenuItem} from '@rmwc/menu';
 import Icon from '../core/Icon';
 import Link from '../core/Link';
 
-import {SizingContext} from '../providers/SizingProvider';
+// import {SizingContext} from '../providers/SizingProvider';
 
 import './HeaderNav.scss';
 
 export default function HeaderNav() {
     const [selected, setSelected] = useState(null);
-    const {handhelds} = useContext(SizingContext);
+    // const {handhelds} = useContext(SizingContext);
+    const handhelds = true;
     const links = [
         {
             display: 'home',

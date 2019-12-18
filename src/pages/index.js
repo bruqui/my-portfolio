@@ -9,13 +9,14 @@ import Layout from '../components/layout/Layout';
 import Projects from '../components/app/Projects';
 import SEO from '../components/app/seo';
 
-import {SizingContext} from '../components/providers/SizingProvider';
+// import {SizingContext} from '../components/providers/SizingProvider';
 
 import './index.scss';
 
 
 export default function IndexPage() {
-    const {height} = useContext(SizingContext);
+    const {height} = 720;
+    // const {height} = useContext(SizingContext);
     const {file} = useStaticQuery(graphql`
         query TopBackground {
           file(relativePath: {eq: "HomeMain.png"}) {
