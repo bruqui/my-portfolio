@@ -2,23 +2,26 @@
 $content-height: 298px;
 
 .projects {
+    &__headline {
+        margin-bottom: 0;
+    }
+
+    &__description {
+        margin-bottom: 0;
+    }
 
     &__project-container {
-        background-color: #ececec;
         display: grid;
-        grid-gap: 0;
+        grid-gap: 0.5rem;
         grid-template-areas:
-            'pipelineRxImage pipelineRxDescription'
-            'southwestDescription southwestImage';
+            'rallyDescription'
+            'rallyImage'
+            'pipelineRxDescription'
+            'pipelineRxImage'
+            'southwestDescription'
+            'southwestImage';
         justify-items: center;
         align-items: center;
-        @include respond-to(handhelds) {
-            grid-template-areas:
-                'pipelineRxImage'
-                'pipelineRxDescription'
-                'southwestImage'
-                'southwestDescription';
-        }
     }
 
     &__content {
@@ -29,33 +32,48 @@ $content-height: 298px;
 
     &__image {
         width: 100%;
-
+        box-shadow: -10px 9px 10px 0px rgba(0, 0, 0, 0.4);
         &#pipelineRxImage {
-            grid-area: pipelineRxImage
+            grid-area: pipelineRxImage;
         }
 
         &#southwestImage {
-            grid-area: southwestImage
+            grid-area: southwestImage;
+        }
+
+        &#rallyImage {
+            grid-area: rallyImage;
         }
     }
 
     &__detail {
-        background-color: $color-secondary;
         color: $color-on-primary;
-        padding: 5%;
-        text-shadow: 1px 1px 8px darken($color-secondary, 40%);
-
-        &:nth-child(2) {
-            background-color: $color-primary;
-            text-shadow: 1px 1px 8px darken($color-primary, 40%);
-        }
+        padding-top: 1rem;
 
         &#pipelineRxDescription {
-            grid-area: pipelineRxDescription
+            grid-area: pipelineRxDescription;
+        }
+
+        &#rallyDescription {
+            grid-area: rallyDescription;
         }
 
         &#southwestDescription {
-            grid-area: southwestDescription
+            grid-area: southwestDescription;
+        }
+    }
+
+    @media all and (min-width: 875px) {
+        &__project-container {
+            grid-gap: 2rem;
+            grid-template-areas:
+                'rallyImage rallyDescription'
+                'pipelineRxDescription pipelineRxImage'
+                'southwestImage southwestDescription';
+        }
+
+        &__headline {
+            margin-bottom: 1rem;
         }
     }
 }

@@ -1,15 +1,14 @@
 // Brand Color Palette
-$off-white: #f4f4f4;
-$pure-white: #fff;
-$color-primary: #673AB7;
-$color-primary-dark: #311B92;
-$color-primary-light: #B39DDB;
-$color-secondary: #AED581;
-$color-surface: #FFFFFF;
-$color-background: #FFFFFF;
-$color-warn: #FFA54E;
-$color-error: #B00020;
-$color-on-primary: #ffffff;
-$color-on-secondary: #ffffff;
-$color-on-error: #ffffff;
-$color-on-surface: #333333;
+$color-primary: #2c1760;
+$color-primary-dark: darken($color-primary, 10%);
+$color-primary-light: lighten($color-primary, 30%);
+$color-secondary: #43b505;
+$color-surface: #242424;
+$color-background: #fff;
+$color-warn: #ffa54e;
+$color-error: #b00020;
+$color-on-primary: #fff;
+$color-on-secondary: #fff;
+$color-on-error: #fff;
+$color-on-surface: #fff;
+$footer: #313741;

@@ -1,0 +1,36 @@
+@import '_globals';
+
+.docs-drawer {
+    background-color: $color-surface;
+    color: $color-on-surface;
+    position: fixed;
+    top: 0;
+    transition: transform 0.5s ease;
+    z-index: 2;
+
+    &__link,
+    &__headline {
+        display: block;
+        line-height: 1;
+        text-transform: capitalize;
+    }
+
+    &__section {
+        border-top: 1px solid $color-primary-light;
+
+        &:first-child {
+            border-top: none;
+        }
+    }
+
+    &__headline {
+        color: darken($color-on-surface, 30%);
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    &--closed {
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+    }
+}

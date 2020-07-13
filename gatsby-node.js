@@ -1,11 +1,12 @@
 const {createFilePath} = require(`gatsby-source-filesystem`);
-const path = require("path");
+const path = require('path');
 
 exports.onCreateNode = ({node, getNode, actions}) => {
     const {createNodeField} = actions;
 
     if (node.displayName) {
-        const slug = createFilePath({node, getNode, basePath: `pages`})
+        const slug = createFilePath({node, getNode, basePath: `pages`});
+
         createNodeField({
             node,
             name: `slug`,
@@ -25,7 +26,9 @@ exports.createPages = async ({graphql, actions, reporter}) => {
 async function createDocPages(createPage, graphql, reporter) {
     const result = await graphql(`
         query {
-            allFile(filter: {extension: {eq: "mdx"}, sourceInstanceName: {eq: "documents"}}) {
+            allFile(
+                filter: {extension: {eq: "mdx"}, sourceInstanceName: {eq: "documents"}}
+            ) {
                 edges {
                     node {
                         id
@@ -60,7 +63,10 @@ async function createDocPages(createPage, graphql, reporter) {
 async function createComponentDocPages(createPage, graphql, reporter) {
     const result = await graphql(`
         query {
-            allComponentMetadata(filter: {props: {elemMatch: {name: {ne: "null"}}}}, sort: {fields: displayName}) {
+            allComponentMetadata(
+                filter: {props: {elemMatch: {name: {ne: "null"}}}}
+                sort: {fields: displayName}
+            ) {
                 edges {
                     node {
                         displayName
@@ -85,7 +91,9 @@ async function createComponentDocPages(createPage, graphql, reporter) {
         createPage({
             path: `docs${node.fields.slug.toLowerCase()}`,
             // This component will wrap our MDX content
-            component: path.resolve(`./src/components/documentation/ComponentDocLayout.js`),
+            component: path.resolve(
+                `./src/components/documentation/ComponentDocLayout.js`,
+            ),
             // You can use the values in this context in
             // our page layout component
             context: {

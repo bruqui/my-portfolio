@@ -4,12 +4,20 @@
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "prettier",
   ],
   "plugins": [
     "import",
     "react",
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src"]
+      }
+    }
+  },
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
@@ -26,28 +34,34 @@
   },
   "rules": {
     "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
+    "arrow-parens": ["warn", "always"],
+    "arrow-spacing": "warn",
+    "brace-style": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "comma-spacing": ["warn", { "before": false, "after": true }],
     "eol-last": 0,
     "import/no-named-as-default": 0,
-    "import/no-unused-modules": [1, {
-      "ignoreExports": ["src/pages/*"],
-      "src": ["src/"],
-      "unusedExports": true,
-    }],
+    "import/no-unused-modules": [1, {"ignoreExports": ["src/pages/*"], "src": ["src/"], "unusedExports": true}],
     "indent": ["warn", 4],
     "jsx-quotes": 1,
+    "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
     "max-len": ["error", { "code": 120 }],
     "no-alert": 0,
     "no-console": 1,
     "no-debugger": 1,
     "no-lone-blocks": 0,
+    "no-nested-ternary": "error",
+    "no-param-reassign": "error",
     "no-trailing-spaces": 0,
     "no-underscore-dangle": 0,
+    "no-unneeded-ternary": "error",
     "no-unused-vars": ["warn", { "vars": "all", "args": "none", "ignoreRestSiblings": false }],
     "no-use-before-define": 0,
     "no-useless-escape": 0,
     "no-var": 1,
+    "object-curly-newline": 0,
+    "object-curly-spacing": ["warn", "never"],
     "quotes": 0,
-    "react/require-default-props": 0,
     "react/display-name": [ 1, {"ignoreTranspilerName": false}],
     "react/forbid-prop-types": [1, {"forbid": ["any"]}],
     "react/jsx-boolean-value": 1,
@@ -80,24 +94,11 @@
     "react/prefer-es6-class": 1,
     "react/prop-types": 1,
     "react/react-in-jsx-scope": 1,
+    "react/require-default-props": 0,
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "semi": [1, "always"],
-    "no-nested-ternary": "error",
-    "no-unneeded-ternary": "error",
-    "arrow-parens": ["warn", "always"],
-    "arrow-spacing": "warn",
-    "comma-spacing": ["warn", { "before": false, "after": true }],
-    "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
-    "no-param-reassign": "error",
-    "comma-dangle": ["warn", "always-multiline"],
-    "space-before-function-paren": ["warn", {
-        "anonymous": "always",
-        "named": "never",
-        "asyncArrow": "always"
-    }],
-    "object-curly-spacing": ["warn", "never"],
+    "space-before-function-paren": ["warn", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
     "spaced-comment": ["warn", "always"],
-    "brace-style": "warn",
   }
 }

@@ -1,40 +1,55 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {find} from 'lodash';
 import {graphql, useStaticQuery} from 'gatsby';
 import Image from 'gatsby-image';
-// import Zoom from 'react-reveal/Zoom';
 
-import CenteredContent from '../core/CenteredContent';
-import Heading from '../core/Heading';
+import getClassName from 'tools/getClassName';
+
+import CenteredContent from '../layout/CenteredContent';
+import Headline from '../core/Headline';
 import SEO from './seo';
 
 import './Projects.scss';
 
-export default function Projects() {
-    // const [show, setShow] = useState(null);
+export default function Projects({componentRef}) {
+    const [rootClassName, getChildClass] = getClassName({
+        rootClass: 'projects',
+    });
+
     const {allFile} = useStaticQuery(graphql`
         query ProjectImages {
-          allFile(filter: {
-            extension: {eq: "png"},
-            name: {in: ["Southwest", "PipelineRx"]}
-          }) {
-            edges {
-              node {
-                  name
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid_tracedSVG
+            allFile(
+                filter: {
+                    extension: {eq: "png"}
+                    name: {in: ["Southwest", "PipelineRx", "Rally"]}
+                }
+            ) {
+                edges {
+                    node {
+                        name
+                        childImageSharp {
+                            fluid {
+                                ...GatsbyImageSharpFluid_tracedSVG
+                            }
+                        }
                     }
-                  }
-              }
+                }
             }
-          }
-
         }
     `);
 
     function getDetail(projectKey) {
         const details = {
+            rally: {
+                heading: `Rally`,
+                dates: 'Dec 2019 – Aug 2020',
+                description: `
+                    6 month contract (extended to 7) rebuilding a reporting system from older technologies into an updated ReactJS SPA using HighchartsJS that clients
+                    of Rally, a division of Broadcom, use to chart thier work. The Rally software tracks and builds analytics such as
+                    burnups, burndowns, etc. to visualize progress on their Agile projects.
+                `,
+            },
             southwest: {
                 heading: 'Southwest Airlines',
                 dates: 'Dec 2014 - June 2016',
@@ -64,42 +79,38 @@ export default function Projects() {
     }
 
     function renderProject(projectKey, imageName) {
-        const image = find(allFile.edges, ({node: {name}}) => (name === imageName));
+        const image = find(allFile.edges, ({node: {name}}) => name === imageName);
         const {dates, description, heading} = getDetail(projectKey);
 
         return (
             <React.Fragment>
-                <div className="projects__image" id={`${projectKey}Image`}>
-                    <Image
-                        fluid={image.node.childImageSharp.fluid}
-                        alt={heading}
-                    />
+                <div className={getChildClass('image')} id={`${projectKey}Image`}>
+                    <Image fluid={image.node.childImageSharp.fluid} alt={heading} />
                 </div>
-                <div className="projects__detail" id={`${projectKey}Description`}>
-                    <Heading level={3}>{heading}</Heading>
+                <div className={getChildClass('detail')} id={`${projectKey}Description`}>
+                    <Headline level={3}>{heading}</Headline>
                     <p>{dates}</p>
-                    <p>{description}</p>
+                    <p className={getChildClass('description')}>{description}</p>
                 </div>
             </React.Fragment>
         );
     }
 
-    // function handleMouseOver(showKey) {
-    //     return () => setShow(showKey);
-    // }
-
-    // function handleMouseOut(event) {
-    //     setShow(null);
-    // }
-
     return (
-        <CenteredContent className="projects" id="projects" elementType="section">
+        <CenteredContent className={rootClassName}>
             <SEO title="Projects" />
-            <Heading level={2}>Projects</Heading>
-            <div className="projects__project-container">
-                {renderProject('southwest', 'Southwest')}
+            <Headline className={getChildClass('headline')} level={2}>
+                Project Highlights
+            </Headline>
+            <div className={getChildClass('project-container')}>
+                {renderProject('rally', 'Rally')}
                 {renderProject('pipelineRx', 'PipelineRx')}
+                {renderProject('southwest', 'Southwest')}
             </div>
         </CenteredContent>
     );
 }
+
+Projects.propTypes = {
+    componentRef: PropTypes.object,
+};

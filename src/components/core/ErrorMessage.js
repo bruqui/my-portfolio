@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import {get, map} from 'lodash';
+import {get, isObject, map} from 'lodash';
+
+import getClassName from 'tools/getClassName';
 
 import Snackbar, {SnackbarAction} from './Snackbar';
 
@@ -9,6 +10,7 @@ import './ErrorMessage.scss';
 
 export default function ErrorMessage({className, error, name}) {
     const [open, setOpen] = useState(!!error);
+    const [rootClassName] = getClassName({className, rootClass: 'error-message'});
 
     useEffect(() => {
         setOpen(!!error);
@@ -18,42 +20,51 @@ export default function ErrorMessage({className, error, name}) {
         setOpen(false);
     }
 
-    let errorResult = (typeof error === 'string') ? error : '';
+    function getMessage(errorArg) {
+        let errorResult = typeof errorArg === 'string' ? errorArg : '';
 
-    if (typeof error === 'object') {
-        if (error.message) {
-            const graphQLErrors = get(error, 'graphQLErrors');
+        if (isObject(errorArg)) {
+            if (errorArg.message) {
+                const graphQLErrors = get(errorArg, 'graphQLErrors');
 
-            if (typeof graphQLErrors === 'object') {
-                errorResult = (
-                    <React.Fragment>
-                        {
-                            map(
-                                graphQLErrors,
-                                ({message, path}) => (
-                                    <div key={message}>
-                                        {message}, path: {JSON.stringify(path)}
-                                    </div>
-                                )
-                            )
-                        }
-                    </React.Fragment>
-                );
-            } else {
-                errorResult = error.message;
+                if (isObject(graphQLErrors)) {
+                    errorResult = (
+                        <React.Fragment>
+                            {map(graphQLErrors, ({message, path}) => (
+                                <div key={message}>
+                                    {message}, path: {JSON.stringify(path)}
+                                </div>
+                            ))}
+                        </React.Fragment>
+                    );
+                } else {
+                    errorResult = <pre>{JSON.stringify(errorArg, undefined, 4)}</pre>;
+                }
             }
         } else {
-            errorResult = <pre>{JSON.stringify(error, undefined, 4)}</pre>;
+            errorResult = <pre>{JSON.stringify(errorArg, undefined, 4)}</pre>;
         }
+
+        return errorResult;
+    }
+
+    function getMessageArray(errors) {
+        return (
+            <React.Fragment>
+                {map(errors, (errorValue, index) => (
+                    <div key={`error__${index}`}>{getMessage(errorValue)}</div>
+                ))}
+            </React.Fragment>
+        );
     }
 
     return (
         <Snackbar
-            className={classnames('error-message', className)}
+            className={rootClassName}
             name={name}
             open={open}
             onClose={handleClose}
-            message={errorResult}
+            message={get(error, 'errors') ? getMessageArray() : getMessage(error)}
             action={<SnackbarAction label="Dismiss" />}
             timeout={90000}
         />

@@ -1,11 +1,45 @@
+const sass = require('sass');
+const path = require('path');
+
 module.exports = {
     siteMetadata: {
-        title: `Bruce Smith Portfolio`,
-        description: `Hi. I'm Bruce. My superpower is a frontend developer in the React world.`,
-        author: `@bruqui`,
+        title: 'Bruce Smith Portfolio',
+        description: `
+            Expert in the design, development and global introduction of advanced
+            technologies to meet business, financial, competitive, and customer demands.
+            Experience combining strong development with outstanding performance for
+            leading complex technology organizations. Diverse understanding of web-based
+            applications from concept, business case, and feasibility analysis through
+            development, usability testing, deployment and maintenance.
+
+            As a primarily front-end React developer, my focus and expertise revolves
+            around building efficient, reusable components and performant, scalable apps
+            to align with the face paced world of development. My skills include the
+            modern web stack such as Webpack, NodeJS, Babel, GraphQL, SCSS, etc. Much of
+            my recent experience and passions is architecting new apps or rebuilding apps
+            from an older technology.
+        `,
+        author: '@bruqui',
     },
     plugins: [
-        `@bruqui/gatsby-plugin-react-helmet-async`,
+        'gatsby-plugin-resolve-src',
+        '@bruqui/gatsby-plugin-react-helmet-async',
+        // {
+        //     resolve: `gatsby-source-contentful`,
+        //     options: {
+        //         spaceId: `your_space_id`,
+        //         // Learn about environment variables: https://gatsby.dev/env-vars
+        //         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        //         downloadLocal: true,
+        //     },
+        // },
+        {
+            resolve: 'gatsby-plugin-module-resolver',
+            options: {
+                root: './src', // <- will be used as a root dir
+                aliases: {},
+            },
+        },
         {
             resolve: 'gatsby-plugin-web-font-loader',
             options: {
@@ -15,9 +49,13 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-sass`,
+            resolve: 'gatsby-plugin-sass',
             options: {
-                includePaths: ['./node_modules/'],
+                implementation: sass,
+                includePaths: [
+                    path.join(__dirname, 'node_modules'),
+                    path.join(__dirname, 'src/styles'),
+                ],
             },
         },
         'gatsby-plugin-mdx',
@@ -44,31 +82,70 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-source-filesystem`,
+            resolve: 'gatsby-source-filesystem',
             options: {
-                name: `images`,
+                name: 'images',
                 path: `${__dirname}/src/images`,
             },
         },
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+        'gatsby-transformer-sharp',
+        'gatsby-plugin-sharp',
         {
-            resolve: `gatsby-plugin-manifest`,
+            resolve: 'gatsby-plugin-manifest',
             options: {
-                name: `gatsby-starter-default`,
-                short_name: `starter`,
-                start_url: `/`,
-                background_color: `#FFFFFF`,
-                theme_color: `#1D09C0`,
-                display: `minimal-ui`,
-                icon: `src/images/smithcasa-icon.png`, // This path is relative to the root of the site.
+                name: 'gatsby-starter-default',
+                short_name: 'starter',
+                start_url: '/',
+                background_color: '#FFFFFF',
+                theme_color: '#1D09C0',
+                display: 'minimal-ui',
+                icon: 'src/images/behivetech-icon.png', // This path is relative to the root of the site.
             },
         },
-        `gatsby-plugin-eslint`,
-        `gatsby-transformer-react-docgen`,
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /assets/, // See below to configure properly
+                },
+            },
+        },
+
+        {
+            resolve: 'gatsby-plugin-prettier-eslint',
+            options: {
+                prettier: {
+                    patterns: [
+                        // the pattern "**/*.{js,jsx,ts,tsx}" is not used because we will rely on `eslint --fix`
+                        '**/*.{css,scss,less}',
+                        '**/*.{json,json5}',
+                        '**/*.{graphql}',
+                        '**/*.{md,mdx}',
+                        '**/*.{html}',
+                        '**/*.{yaml,yml}',
+                    ],
+                },
+                eslint: {
+                    patterns: '**/*.{js,jsx,ts,tsx}',
+                    customOptions: {
+                        fix: true,
+                        cache: true,
+                    },
+                    ignorePatterns: [
+                        '**/node_modules/**/*',
+                        '**/.git/**/*',
+                        '**/dist/**/*',
+                        '.cache/**/*',
+                        'public/**/*',
+                        'src/components/core/*',
+                    ], // string or array of paths/files/globs to ignore
+                },
+            },
+        },
+        'gatsby-transformer-react-docgen',
 
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
-        `gatsby-plugin-offline`,
+        'gatsby-plugin-offline',
     ],
 };

@@ -3,12 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highlight, {defaultProps} from 'prism-react-renderer';
-import {
-    LiveProvider,
-    LiveEditor,
-    LiveError,
-    LivePreview,
-} from 'react-live';
+import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 import {mdx, useMDXComponents} from '@mdx-js/react';
 
 import './CodeBlock.scss';
@@ -27,10 +22,7 @@ export default function CodeBlock({
     if (live) {
         return (
             <div className="code-block">
-                <LiveProvider
-                    code={codeString}
-                    scope={{...components, mdx}}
-                >
+                <LiveProvider code={codeString} scope={{...components, mdx}}>
                     <div className="code-block__preview">
                         <div className="code-block__preview-title">Preview:</div>
                         <div className="code-block__preview-content">
@@ -49,7 +41,7 @@ export default function CodeBlock({
 
     if (render) {
         return (
-            <div style={{marginTop: '40px'}}>
+            <div style={{marginTop: '2.5rem'}}>
                 <LiveProvider code={codeString}>
                     <LivePreview />
                 </LiveProvider>
@@ -59,35 +51,28 @@ export default function CodeBlock({
 
     return (
         <Highlight {...defaultProps} code={codeString} language={language}>
-            {
-                ({
-                    className,
-                    style,
-                    tokens,
-                    getLineProps,
-                    getTokenProps,
-                }) => (
-                    <pre className={className} style={{...style, padding: '20px'}}>
-                        {
-                            tokens.map((line, i) => {
-                                const lineKey = `line_${i}`;
+            {({className, style, tokens, getLineProps, getTokenProps}) => (
+                <pre className={className} style={{...style, padding: '1.25rem'}}>
+                    {tokens.map((line, i) => {
+                        const lineKey = `line_${i}`;
 
-                                return (
-                                    <div key={lineKey} {...getLineProps({line, key: i})}>
-                                        {
-                                            line.map((token, key) => {
-                                                const tokenKey = `token_${key}`;
+                        return (
+                            <div key={lineKey} {...getLineProps({line, key: i})}>
+                                {line.map((token, key) => {
+                                    const tokenKey = `token_${key}`;
 
-                                                return <span key={tokenKey} {...getTokenProps({token, key})} />;
-                                            })
-                                        }
-                                    </div>
-                                );
-                            })
-                        }
-                    </pre>
-                )
-            }
+                                    return (
+                                        <span
+                                            key={tokenKey}
+                                            {...getTokenProps({token, key})}
+                                        />
+                                    );
+                                })}
+                            </div>
+                        );
+                    })}
+                </pre>
+            )}
         </Highlight>
     );
 }
@@ -95,7 +80,7 @@ export default function CodeBlock({
 CodeBlock.propTypes = {
     codeString: PropTypes.string,
     className: PropTypes.string,
-    live: PropTypes.bool,
+    live: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     render: PropTypes.func,
     renderedChild: PropTypes.func,
 };

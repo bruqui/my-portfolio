@@ -1,0 +1,6 @@
+.idea/
+.cache/
+.serverless/
+package-lock.json
+public/
+s_hello.js

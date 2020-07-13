@@ -1,0 +1,16 @@
+@import '_mdc-theme';
+@import '@material/list/mdc-list';
+
+.list-item {
+    position: relative;
+}
+
+.list-link:after {
+    // a11y styling trick to cover the entire are of the parent so any part of it can be clicked.
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

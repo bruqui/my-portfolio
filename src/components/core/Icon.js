@@ -1,26 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Icon as MaterialIcon} from '@rmwc/icon';
-import classnames from 'classnames';
 
-import '@material/react-material-icon/index.scss';
+import getClassName from 'tools/getClassName';
 
-export default function Icon({
-    className,
-    icon,
-    onPrimary,
-    onSecondary,
-    ...props
-}) {
-    function getClass() {
-        return classnames({
-            icon: true,
-            'mdc-theme--on-primary': onPrimary,
-            'mdc-theme--on-secondary': onSecondary,
-        }, className);
-    }
+import './Icon.scss';
 
-    return <MaterialIcon {...props} className={getClass()} icon={icon} />;
+export default function Icon({className, icon, onPrimary, onSecondary, ...props}) {
+    const [rootClassName] = getClassName({
+        className,
+        modifiers: {
+            'on-primary': onPrimary,
+            'on-secondary': onSecondary,
+        },
+        rootClass: 'icon',
+    });
+
+    return <MaterialIcon {...props} className={rootClassName} icon={icon} />;
 }
 
 Icon.propTypes = {

@@ -3,15 +3,58 @@
 .header {
     background-color: $color-primary;
     background: $gradient;
-    color: $pure-white;
-    padding: 10px;
+    box-shadow: 0 -3px 4px 4px rgba(0, 0, 0, 0.2);
+    color: $color-on-primary;
+    display: flex;
+    padding: 0.625rem;
     position: relative;
+    z-index: 1;
+
+    &__logo,
+    &__nav {
+        flex: 1 1 auto;
+    }
+
+    &__logo {
+        height: '42px';
+        width: '232px';
+    }
+
+    &__logo-link {
+        &:visited,
+        &:hover,
+        &:active {
+            color: inherit;
+            text-decoration: inherit;
+            font-weight: inherit;
+        }
+    }
+
+    &__nav {
+        display: none;
+        margin: 0.5rem 0 0 1.5rem;
+    }
+
+    &__nav-memu {
+        display: block;
+    }
 
     &__right {
-        padding: 3px 10px;
+        display: inline-flex;
+        padding: 0 0.625rem;
         position: absolute;
         right: 0;
         text-align: right;
-        top: 0;
+        top: 0.25rem;
+    }
+
+    @media all and (min-width: 625px) {
+        &__nav {
+            display: block;
+        }
+
+        &__nav-menu {
+            display: none;
+        }
     }
 }

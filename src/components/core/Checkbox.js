@@ -4,6 +4,9 @@ import classnames from 'classnames';
 import {Checkbox as MdcCheckbox} from '@rmwc/checkbox';
 import './Checkbox.scss';
 
+/**
+    Checkbox form element which uses a Material Design libarary.
+*/
 export default function Checkbox({
     className,
     fullWidth,

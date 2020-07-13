@@ -1,36 +1,49 @@
 @import '../styles/globals';
 
 .index-page {
-    position: relative;
-
     &__container {
-        align-items: center;
-        display: flex;
-        flex-flow: column;
-        height: 100vh;
-        justify-content: center;
-        position: absolute;
-        top: 0;
-        width: 100vw;
-        z-index: 1;
+        position: relative;
     }
 
     &__content {
         color: white;
-        max-width: 720px;
-        padding: 5%;
+        font-size: 1rem;
+        left: 5%;
+        position: absolute;
         text-shadow: 2px 2px 8px #000;
+        top: 45%;
+        transform: translate(-2.5%, -58%);
+
+        @media all and (min-width: 700px) {
+            left: 15%;
+            transform: translate(-7.5%, -65%);
+        }
+
+        @media all and (min-width: 900px) {
+            left: 25%;
+            transform: translate(-17%, -65%);
+        }
+
+        @media all and (min-width: 1140px) {
+            left: 45%;
+            transform: translate(-42%, -65%);
+        }
     }
 
     &__image {
-        height: 100vh;
-        z-index: -1;
+        height: 93vh;
+        z-index: 0;
     }
 
     &__heading {
+        font-size: 2.3rem;
 
-        @include respond-to(handhelds) {
+        @media all and (min-width: 500px) {
             font-size: 3rem;
+        }
+
+        @media all and (min-width: 725px) {
+            @include headline-2;
         }
     }
 }

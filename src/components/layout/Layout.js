@@ -8,16 +8,16 @@ import Footer from './Footer';
 import Main from './Main';
 
 import './Layout.scss';
-import '../../styles/index.scss';
-import '../../styles/material-icons.scss';
+import 'styles/index.scss';
+import 'styles/material-icons.scss';
 
-export default function Layout({
-    children,
-    className,
-    fullWidth,
-    headerFixed,
-    preHeader,
-}) {
+/**
+    Main layout component for the site. Passes on if the header should be fixed
+    and if the main container for the site should be full width or a smaller fixed
+    width.
+*/
+
+export default function Layout({children, className, mainProps}) {
     const data = useStaticQuery(graphql`
         query SiteTitleQuery {
             site {
@@ -30,9 +30,10 @@ export default function Layout({
 
     return (
         <section className={classnames('layout', className)}>
-            {preHeader}
-            <Header className="layout__header" siteTitle={data.site.siteMetadata.title} fixed={headerFixed} />
-            <Main className="layout__main" fullWidth={fullWidth}>{children}</Main>
+            <Header className="layout__header" siteTitle={data.site.siteMetadata.title} />
+            <Main className="layout__main" {...mainProps}>
+                {children}
+            </Main>
             <Footer className="layout__footer" />
         </section>
     );
@@ -41,12 +42,6 @@ export default function Layout({
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    /** Passes prop to Main which sets the main container to 100% wide. */
-    fullWidth: PropTypes.bool,
-    headerFixed: PropTypes.bool,
-    preHeader: PropTypes.node,
-};
-
-Layout.defaultProps = {
-    preHeader: null,
+    /** Props for the Main component which is the div that wraps the main content. */
+    mainProps: PropTypes.object,
 };

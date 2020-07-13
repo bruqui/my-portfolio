@@ -1,10 +1,15 @@
+@import '_base';
 @import '../../styles/_mdc-theme';
 @import '@material/switch/mdc-switch';
 @import '@material/form-field/mdc-form-field';
 
 .switch {
     &--full-width {
-        margin: 10px 10px 10px 0;
+        margin: $gutter-small;
         width: 100%;
+    }
+
+    .mdc-switch {
+        margin-right: $gutter-small;
     }
 }

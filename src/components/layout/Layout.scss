@@ -1,26 +1,21 @@
-@import "../../styles/_globals";
+@import '../../styles/_globals';
 
 .layout {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 
     &__main {
+        background-color: $color-primary;
         flex: 1 1 auto;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: auto;
     }
 
     &__header {
-        flex: 0 0 $header-height;
-
-        @media screen and (max-width: $device-width) {
-            flex: 0 0 $header-device-height;
-        }
-
+        flex: 0 0 auto;
     }
 
     &__footer {
-        flex: 0 0 $footer-height;
+        flex: 0 0 auto;
     }
 }
-

@@ -1,17 +1,46 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
-import Layout from '../layout/Layout';
-import Links from './Links';
+import getClassName from 'tools/getClassName';
+
+import Button from 'components/core/Button';
+import Layout from 'components/layout/Layout';
+import DocsDrawer from './DocsDrawer';
+
 import './DocsLayout.scss';
-
+/**
+    Layout for all the documentation components.
+*/
 export default function DocsLayout({children, className}) {
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [rootClassName, getChildClass] = getClassName({
+        className,
+        rootClass: 'docs-layout',
+    });
+
+    function toggleDrawerOpen() {
+        setDrawerOpen(!drawerOpen);
+    }
+
     return (
-        <Layout className={classnames('docs-layout', className)} fullWidth>
-            <div className="docs-layout__content">
-                <Links className="docs-layout__links" />
-                <div className="docs-layout__children">{children}</div>
+        <Layout
+            className={getChildClass('button')}
+            className={rootClassName}
+            fullWidth
+            headerFixed
+        >
+            <div className={getChildClass('container')}>
+                <DocsDrawer
+                    className={getChildClass('drawer')}
+                    drawerOpen={drawerOpen}
+                    toggleDrawerOpen={toggleDrawerOpen}
+                />
+                <div className={getChildClass('children')}>
+                    <Button onClick={toggleDrawerOpen} raised secondary>
+                        Open Docs Menu
+                    </Button>
+                    {children}
+                </div>
             </div>
         </Layout>
     );

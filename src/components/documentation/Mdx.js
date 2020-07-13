@@ -13,7 +13,7 @@ import {
 
 import Button from '../core/Button';
 import CodeBlock from './CodeBlock';
-import Heading from '../core/Heading';
+import Headline from '../core/Headline';
 import Icon from '../core/Icon';
 import IconButton from '../core/IconButton';
 import PropsTable from './PropsTable';
@@ -21,15 +21,10 @@ import TextField from '../core/TextField';
 
 import './Mdx.scss';
 
-export default function Mdx({
-    descriptionMdx,
-    propsMetadata,
-    mdx,
-    title,
-}) {
+export default function Mdx({descriptionMdx, propsMetadata, mdx, title}) {
     const shortcodes = {
         Button,
-        Heading,
+        Headline,
         Icon,
         IconButton,
         MenuItem,
@@ -55,12 +50,14 @@ export default function Mdx({
 
     return (
         <MDXProvider components={{...components, ...shortcodes}}>
-            {title && <Heading level={2} size={5} className="mdx__headline">{title}</Heading>}
+            {title && (
+                <Headline level={2} className="mdx__headline">
+                    {title}
+                </Headline>
+            )}
             {descriptionMdx && <MDXRenderer>{descriptionMdx}</MDXRenderer>}
             {propsMetadata && <PropsTable propsMetadata={propsMetadata} />}
-            {
-                (mdx && mdx.body) && <MDXRenderer>{mdx.body}</MDXRenderer>
-            }
+            {mdx && mdx.body && <MDXRenderer>{mdx.body}</MDXRenderer>}
         </MDXProvider>
     );
 }

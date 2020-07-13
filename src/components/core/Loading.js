@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import getClassName from 'tools/getClassName';
+
+import LoadingSpinner from './LoadingSpinner';
+
+import './Loading.scss';
 
 export default function Loading({className, loading}) {
-    return (
-        (loading)
-            ? <div className={classnames('loading', className)}>Loading...</div>
-            : null
-    );
+    const [rootClassName, getChildClass] = getClassName({
+        className,
+        rootClass: 'loading',
+    });
+
+    return loading ? (
+        <div className={rootClassName}>
+            <div className={getChildClass('spinner')}>
+                <LoadingSpinner onDark />
+            </div>
+        </div>
+    ) : null;
 }
 
 Loading.propTypes = {

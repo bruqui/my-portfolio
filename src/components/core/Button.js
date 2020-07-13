@@ -1,27 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-
 import {Button as MdcButton} from '@rmwc/button';
-import {CircularProgress} from '@rmwc/circular-progress';
+
+import getClassName from 'tools/getClassName';
+
+import LoadingSpinner from './LoadingSpinner';
 
 import './Button.scss';
-import '@rmwc/circular-progress/circular-progress.css';
 
 export default function Button({
     children,
     className,
     loading,
+    outlined,
+    secondary,
     ...props
 }) {
+    const [rootClassName, getChildClass] = getClassName({
+        className,
+        modifiers: {outlined, secondary},
+        rootClass: 'button',
+    });
+
     function getProps() {
-        const icon = (loading)
-            ? <CircularProgress size="xsmall" style={{color: '#fff'}} />
-            : undefined;
+        const icon = loading ? (
+            <LoadingSpinner className={getChildClass('spinner')} small />
+        ) : (
+            undefined
+        );
 
         return {
-            className: classnames(className, 'button'),
+            className: rootClassName,
             icon,
+            outlined,
             ...props,
         };
     }
@@ -33,4 +44,6 @@ Button.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     loading: PropTypes.bool,
+    outlined: PropTypes.bool,
+    secondary: PropTypes.bool,
 };

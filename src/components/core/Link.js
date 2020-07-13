@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link as GatsbyLink} from 'gatsby';
-import classnames from 'classnames';
+
+import getClassName from 'tools/getClassName';
 
 import './Link.scss';
 
@@ -14,17 +15,21 @@ export default function Link({
     onSecondary,
     ...props
 }) {
-    const Component = (href) ? 'a' : GatsbyLink;
+    const Component = href ? 'a' : GatsbyLink;
+    const [rootClassName, getChildClass] = getClassName({
+        className,
+        rootClass: 'link',
+        modifiers: {
+            'on-primary': onPrimary,
+            'on-secondary': onPrimary,
+        },
+    });
 
-    function getClass() {
-        return classnames({
-            link: true,
-            'link--on-primary': onPrimary,
-            'link--on-secondary': onSecondary,
-        }, className);
-    }
-
-    return <Component {...props} className={getClass()}>{children}</Component>;
+    return (
+        <Component {...props} className={rootClassName}>
+            {children}
+        </Component>
+    );
 }
 
 Link.propTypes = {

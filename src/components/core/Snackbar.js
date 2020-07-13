@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import {Snackbar as MdcSnackbar, SnackbarAction as MdcSnackbarAction} from '@rmwc/snackbar';
+import {
+    Snackbar as MdcSnackbar,
+    SnackbarAction as MdcSnackbarAction,
+} from '@rmwc/snackbar';
+
+import getClassName from 'tools/getClassName';
 
 import './Snackbar.scss';
 
 export const SnackbarAction = MdcSnackbarAction;
 
-export default function Snackbar({
-    className,
-    ...props
-}) {
-    return <MdcSnackbar {...props} className={classnames('snackbar', className)} />;
+export default function Snackbar({className, ...props}) {
+    const [rootClassName] = getClassName({className, rootClass: 'snackbar'});
+
+    return <MdcSnackbar {...props} className={rootClassName} />;
 }
 
 Snackbar.propTypes = {

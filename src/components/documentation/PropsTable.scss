@@ -1,6 +1,11 @@
 .props-table {
+    min-width: 720px;
+
+    th,
     td {
-        vertical-align: top;
+        padding: 0.25rem 1rem 0.25rem 0;
+        text-align: left;
+        vertical-align: middle;
     }
 
     &__td-name {

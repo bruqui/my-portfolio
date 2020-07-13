@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {graphql} from 'gatsby';
 import {get} from 'lodash';
+import {graphql} from 'gatsby';
 
 import DocsLayout from './DocsLayout';
 import GithubIcon from '../core/GithubIcon';
@@ -47,7 +47,10 @@ export const pageQuery = graphql`
 
 /* eslint-disable max-len */
 // eslint-disable-next-line
-export default function ComponentDocLayout({data: {file, componentMetadata}, pageContext: {dir}}) {
+export default function ComponentDocLayout({
+    data: {file, componentMetadata},
+    pageContext: {dir},
+}) {
     const mdx = get(file, 'childMdx', {});
     const {description, displayName, props} = componentMetadata;
     const githubUrl = 'https://github.com/bruqui/my-portfolio/blob/master/src/components';

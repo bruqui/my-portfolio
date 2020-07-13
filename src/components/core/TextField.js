@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import getClassName from 'tools/getClassName';
+
 import {TextField as MdcTextField} from '@rmwc/textfield';
+import FieldError from './FieldError';
+
 import './TextField.scss';
 
 export default function TextField({
@@ -18,34 +22,34 @@ export default function TextField({
     value,
     ...props
 }) {
-    const [inputValue, setInputValue] = useState(value);
-
     function handleChange(event) {
-        setInputValue(event.target.value);
         onChange(event);
     }
 
-    function getClass() {
-        return classnames({
-            'text-field': true,
-            'text-field--full-width': fullWidth,
-            'text-field--textarea': textarea,
-        }, className);
-    }
+    const [rootClassName] = getClassName({
+        className,
+        modifiers: {
+            'full-width': fullWidth,
+            textarea,
+        },
+        rootClass: 'text-field',
+    });
 
     return (
         <React.Fragment>
             <MdcTextField
                 {...props}
-                className={getClass()}
+                aria-invalid={!!fieldError}
+                className={rootClassName}
                 inputRef={inputRef}
+                invalid={!!fieldError}
                 label={label}
                 name={name}
                 onChange={handleChange}
+                rootProps={rootProps}
                 textarea={textarea}
-                value={inputValue}
             />
-            {fieldError && <div className="text-field__error">{fieldError}</div>}
+            <FieldError error={fieldError} />
         </React.Fragment>
     );
 }
@@ -53,7 +57,7 @@ export default function TextField({
 TextField.propTypes = {
     className: PropTypes.string,
     /** Error to be shown with the field from validation */
-    fieldError: PropTypes.string,
+    fieldError: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     /**
         Sets the textfield to use the fullWidth which is preferred in most cases so
         the layout controls the size of the fields.

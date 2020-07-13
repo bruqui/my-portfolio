@@ -1,34 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import HeaderNav from './HeaderNav';
-import HeaderFixed from './HeaderFixed';
+import getClassName from 'tools/getClassName';
+import Link from 'components/core/Link';
+import HeaderNav from './header-nav/HeaderNav';
+import HeaderNavMenu from './header-nav/HeaderNavMenu';
+import Logo from '../../../static/assets/behivetech-logo.svg';
 
 import './Header.scss';
 
 /**
-    This component will either just render a header or use the HeaderFixed
-    component to determine if the header needs to be fixed at the top or not.
-    It uses render functions to prevent the HeaderFixed component from rendering
-    at all if the fixed prop hasn't been set to true.
+    This component renders the main header and the nav within it.
 */
 
-export default function Header({className, fixed, siteTitle}) {
-    function renderHeader() {
-        return (
-            <header className="header">
-                <HeaderNav />
-            </header>
-        );
-    }
+export default function Header({className, fixed}) {
+    const [rootClassName, getChildClass] = getClassName({
+        className,
+        rootClass: 'header',
+        modifiers: {fixed},
+    });
 
-    function renderHeaderFixed() {
-        return <HeaderFixed renderHeader={renderHeader} />;
-    }
-
-    return (fixed)
-        ? renderHeaderFixed()
-        : renderHeader();
+    return (
+        <header className={rootClassName}>
+            <Link to="/" className={getChildClass('logo-link')}>
+                <Logo style={{width: '232px'}} />
+            </Link>
+            <HeaderNav className={getChildClass('nav')} />
+            <div className={getChildClass('right')}>
+                <HeaderNavMenu className={getChildClass('nav-menu')} />
+            </div>
+        </header>
+    );
 }
 
 Header.propTypes = {

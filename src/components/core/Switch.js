@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import {Switch as MdcSwitch} from '@rmwc/switch';
+
+import getClassName from 'tools/getClassName';
 
 import './Switch.scss';
 
@@ -18,23 +19,23 @@ export default function Switch({
     ...props
 }) {
     const [inputValue, setInputValue] = useState(value);
+    const [rootClassName] = getClassName({
+        className,
+        modifiers: {
+            'full-width': fullWidth,
+        },
+        rootClass: 'footer',
+    });
 
     function handleChange(event) {
         setInputValue(event.target.value);
         onChange(event);
     }
 
-    function getClass() {
-        return classnames({
-            switch: true,
-            'switch--full-width': fullWidth,
-        }, className);
-    }
-
     return (
         <MdcSwitch
             {...props}
-            className={getClass()}
+            className={rootClassName}
             inputRef={inputRef}
             label={label}
             name={name}
