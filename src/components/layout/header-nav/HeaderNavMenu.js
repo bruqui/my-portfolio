@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import getClassName from 'tools/getClassName';
 
-import {SimpleMenu, MenuItem} from 'components/core/Menu';
+import {MenuItem, SimpleMenu} from 'components/core/Menu';
 
 import IconButton from 'components/core/IconButton';
 import getLinks from './getLinks';

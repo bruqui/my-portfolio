@@ -99,6 +99,6 @@
     "react/sort-comp": 1,
     "semi": [1, "always"],
     "space-before-function-paren": ["warn", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
-    "spaced-comment": ["warn", "always"],
+    "spaced-comment": ["warn", "always"]
   }
 }

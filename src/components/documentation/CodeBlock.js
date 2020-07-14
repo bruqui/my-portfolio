@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highlight, {defaultProps} from 'prism-react-renderer';
-import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
+import {LiveEditor, LiveError, LivePreview, LiveProvider} from 'react-live';
 import {mdx, useMDXComponents} from '@mdx-js/react';
 
 import './CodeBlock.scss';

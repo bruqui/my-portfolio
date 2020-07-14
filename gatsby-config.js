@@ -54,8 +54,10 @@ module.exports = {
                 implementation: sass,
                 includePaths: [
                     path.join(__dirname, 'node_modules'),
+                    path.join(__dirname, 'node_modules/@material/*'),
                     path.join(__dirname, 'src/styles'),
                 ],
+                webpackImporter: false,
             },
         },
         'gatsby-plugin-mdx',

@@ -7,10 +7,10 @@ import getClassName from 'tools/getClassName';
 import Headline from 'components/core/Headline';
 import {
     List,
-    ListLink,
     ListGroup,
     ListGroupSubheader,
     ListItem,
+    ListLink,
 } from 'components/core/list';
 
 import './DocsDrawer.scss';
