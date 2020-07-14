@@ -10,6 +10,7 @@ import Main from './Main';
 import './Layout.scss';
 import 'styles/index.scss';
 import 'styles/material-icons.scss';
+import 'styles/material-styles.scss';
 
 /**
     Main layout component for the site. Passes on if the header should be fixed

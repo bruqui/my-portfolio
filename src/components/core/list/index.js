@@ -5,7 +5,6 @@ export {ListItem, ListLink};
 
 export {
     List,
-    ListDivider,
     ListGroup,
     ListGroupSubheader,
     ListItemGraphic,

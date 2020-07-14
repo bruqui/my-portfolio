@@ -45,9 +45,11 @@ export default function Projects({componentRef}) {
                 heading: `Rally`,
                 dates: 'Dec 2019 – Aug 2020',
                 description: `
-                    6 month contract (extended to 7) rebuilding a reporting system from older technologies into an updated ReactJS SPA using HighchartsJS that clients
-                    of Rally, a division of Broadcom, use to chart thier work. The Rally software tracks and builds analytics such as
-                    burnups, burndowns, etc. to visualize progress on their Agile projects.
+                    6 month contract (extended to 7) rebuilding a reporting system from older
+                    technologies into an updated ReactJS SPA using HighchartsJS that clients
+                    of Rally, a division of Broadcom, use to chart thier work. The Rally software
+                    tracks and builds analytics such as burnups, burndowns, etc. to visualize
+                    progress on their Agile projects.
                 `,
             },
             southwest: {

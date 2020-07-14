@@ -23,12 +23,7 @@ export default function DocsLayout({children, className}) {
     }
 
     return (
-        <Layout
-            className={getChildClass('button')}
-            className={rootClassName}
-            fullWidth
-            headerFixed
-        >
+        <Layout className={rootClassName} fullWidth headerFixed>
             <div className={getChildClass('container')}>
                 <DocsDrawer
                     className={getChildClass('drawer')}

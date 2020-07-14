@@ -1,7 +1,4 @@
-import './Menu.scss';
-
 export {
-    ListDivider,
     Menu,
     MenuItem,
     MenuSurface,

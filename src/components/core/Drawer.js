@@ -6,5 +6,3 @@ export {
     DrawerContent,
     DrawerAppContent,
 } from '@rmwc/drawer';
-
-import './Drawer.scss';

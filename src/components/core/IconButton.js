@@ -4,8 +4,6 @@ import {IconButton as MdcIconButton} from '@rmwc/icon-button';
 
 import getClassName from 'tools/getClassName';
 
-import './IconButton.scss';
-
 export default function IconButton({className, ...props}) {
     const [rootClassName] = getClassName({className, rootClass: 'icon-button'});
 

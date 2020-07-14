@@ -4,8 +4,6 @@ import {Card as MdcCard} from '@rmwc/card';
 
 import getClassName from 'tools/getClassName';
 
-import './Card.scss';
-
 export default function Card({className, children, ...props}) {
     const [rootClassName] = getClassName({className, rootClass: 'card'});
 

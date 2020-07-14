@@ -19,6 +19,7 @@ function getScrollPosition(target) {
         : {posX: target.scrollLeft, posY: target.scrollTop};
 }
 
+// eslint-disable-next-line import/no-unused-modules
 export default function useScrollPositionManager(nodeName) {
     const thisRef = useRef();
     const {getNodePos, setNodePos} = useContext(ScrollPositionContext);
