@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import getClassName from 'tools/getClassName';
 
-import Link from 'components/core/Link';
+import {MenuLink} from 'components/core/menu';
 
 import './NavLink.scss';
 
 export default function NavLink({children, className, onSelect, href, to}) {
+    const [renderFinished, setRenderFinished] = useState(false);
+
+    // Fix for Gatsby link trying to update state while rendering
+    useLayoutEffect(() => {
+        setRenderFinished(true);
+    }, []);
+
     const [rootClassName] = getClassName({className, rootClass: 'nav-link'});
 
     const linkProps = {
@@ -15,15 +22,15 @@ export default function NavLink({children, className, onSelect, href, to}) {
     };
 
     function handleGetLinkProps({isCurrent}) {
-        if (isCurrent) {
+        if (renderFinished && isCurrent) {
             onSelect(to || href);
         }
     }
 
     return to ? (
-        <Link {...linkProps} getProps={handleGetLinkProps} to={to}>
+        <MenuLink {...linkProps} getProps={handleGetLinkProps} to={to}>
             {children}
-        </Link>
+        </MenuLink>
     ) : (
         <a {...linkProps} href={href}>
             {children}

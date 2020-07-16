@@ -1,4 +1,9 @@
+@import '_colors';
+
 .about {
+    background-color: $color-primary;
+    color: $color-on-primary;
+
     &__badge {
         margin: 0 0.4rem 0.4rem 0;
     }

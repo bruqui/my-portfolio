@@ -1,0 +1,13 @@
+@import '_colors';
+
+.icon-button {
+    color: $color-on-surface;
+
+    &--onPrimary {
+        color: $color-on-secondary;
+    }
+
+    &--onSecondary {
+        color: $color-on-secondary;
+    }
+}

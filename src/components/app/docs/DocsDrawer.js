@@ -92,9 +92,8 @@ export default function DocsDrawer({className, toggleDrawerOpen, drawerOpen}) {
 
         // taking tabIndex off of ListItem and letting link take the tab works much betters
         return (
-            <ListItem tabIndex={-1}>
+            <ListItem key={id} tabIndex={-1}>
                 <ListLink
-                    key={id}
                     className={getChildClass('link')}
                     to={toLink.toLowerCase()}
                     onClick={handleListLinkClick}

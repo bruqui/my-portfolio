@@ -1,6 +1,7 @@
+export {ListItem as MenuItem, ListLink as MenuLink} from '../list';
+
 export {
     Menu,
-    MenuItem,
     MenuSurface,
     MenuSurfaceAnchor,
     SimpleMenu,

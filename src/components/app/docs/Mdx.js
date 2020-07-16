@@ -5,19 +5,19 @@ import {MDXProvider} from '@mdx-js/react';
 import {preToCodeBlock} from 'mdx-utils';
 import {
     MenuItem,
+    MenuLink,
     MenuSurface,
     MenuSurfaceAnchor,
     SimpleMenu,
     SimpleMenuSurface,
-} from '@rmwc/menu';
-
-import Button from '../core/Button';
-import CodeBlock from './CodeBlock';
-import Headline from '../core/Headline';
-import Icon from '../core/Icon';
-import IconButton from '../core/IconButton';
+} from 'components/core/menu';
+import Button from 'components/core/Button';
+import Headline from 'components/core/Headline';
+import Icon from 'components/core/Icon';
+import IconButton from 'components/core/IconButton';
+import TextField from 'components/core/TextField';
 import PropsTable from './PropsTable';
-import TextField from '../core/TextField';
+import CodeBlock from './CodeBlock';
 
 import './Mdx.scss';
 
@@ -28,6 +28,7 @@ export default function Mdx({descriptionMdx, propsMetadata, mdx, title}) {
         Icon,
         IconButton,
         MenuItem,
+        MenuLink,
         MenuSurface,
         MenuSurfaceAnchor,
         SimpleMenu,

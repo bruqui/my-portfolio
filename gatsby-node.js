@@ -50,7 +50,7 @@ async function createDocPages(createPage, graphql, reporter) {
         createPage({
             path: `docs/${node.name}`,
             // This component will wrap our MDX content
-            component: path.resolve(`./src/components/documentation/DocLayout.js`),
+            component: path.resolve(`./src/components/app/docs/DocPageTemplate.js`),
             // You can use the values in this context in
             // our page layout component
             context: {
@@ -91,9 +91,7 @@ async function createComponentDocPages(createPage, graphql, reporter) {
         createPage({
             path: `docs${node.fields.slug.toLowerCase()}`,
             // This component will wrap our MDX content
-            component: path.resolve(
-                `./src/components/documentation/ComponentDocLayout.js`,
-            ),
+            component: path.resolve(`./src/components/app/docs/ComponentPageTemplate.js`),
             // You can use the values in this context in
             // our page layout component
             context: {

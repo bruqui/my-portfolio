@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import {get} from 'lodash';
 import {graphql} from 'gatsby';
 
-import DocsLayout from './DocsLayout';
-import GithubIcon from '../core/GithubIcon';
+import Docs from './Docs';
 import Mdx from './Mdx';
-import SEO from '../app/seo';
-
-import './ComponentDocLayout.scss';
+import SEO from '../seo';
 
 // eslint-disable-next-line
 export const pageQuery = graphql`
-    query ComponentDocQuery($id: String, $name: String) {
+    query ComponentPageQuery($id: String, $name: String) {
         file(name: {eq: $name}, extension: {eq: "mdx"}) {
             id
             name
@@ -47,31 +44,27 @@ export const pageQuery = graphql`
 
 /* eslint-disable max-len */
 // eslint-disable-next-line
-export default function ComponentDocLayout({
+export default function ComponentPageTemplate({
     data: {file, componentMetadata},
     pageContext: {dir},
 }) {
     const mdx = get(file, 'childMdx', {});
     const {description, displayName, props} = componentMetadata;
-    const githubUrl = 'https://github.com/bruqui/my-portfolio/blob/master/src/components';
 
     return (
-        <DocsLayout className="compoennt-doc-layout">
+        <Docs className="compoennt-page-template">
             <SEO title={`Site Docs: ${displayName}`} />
-            <a href={`${githubUrl}${dir.substring(0, dir.length - 1)}.js`}>
-                <GithubIcon className="component-doc-layout__icon" />
-            </a>
             <Mdx
                 descriptionMdx={description.childMdx.body}
                 mdx={mdx}
                 propsMetadata={props}
                 title={displayName}
             />
-        </DocsLayout>
+        </Docs>
     );
 }
 
-ComponentDocLayout.propTypes = {
+ComponentPageTemplate.propTypes = {
     data: PropTypes.shape({
         file: PropTypes.object,
         componentMetadata: PropTypes.shape({

@@ -21,6 +21,6 @@ export default function CenteredContent({children, className, componentRef, ...p
 
 CenteredContent.propTypes = {
     className: PropTypes.string,
-    componentRef: PropTypes.string,
+    componentRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     children: PropTypes.node.isRequired,
 };

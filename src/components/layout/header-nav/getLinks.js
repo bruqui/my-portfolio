@@ -13,7 +13,7 @@ export default function getLinks() {
             to: '/projects',
         },
         {
-            children: 'component docs',
+            children: 'site docs',
             to: '/docs',
         },
     ];

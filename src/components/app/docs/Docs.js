@@ -7,11 +7,11 @@ import Button from 'components/core/Button';
 import Layout from 'components/layout/Layout';
 import DocsDrawer from './DocsDrawer';
 
-import './DocsLayout.scss';
+import './Docs.scss';
 /**
     Layout for all the documentation components.
 */
-export default function DocsLayout({children, className}) {
+export default function Docs({children, className}) {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [rootClassName, getChildClass] = getClassName({
         className,
@@ -41,7 +41,7 @@ export default function DocsLayout({children, className}) {
     );
 }
 
-DocsLayout.propTypes = {
+Docs.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
 };
