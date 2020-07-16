@@ -1,5 +1,4 @@
 /* eslint react/jsx-key: 0 */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highlight, {defaultProps} from 'prism-react-renderer';

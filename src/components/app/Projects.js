@@ -6,8 +6,8 @@ import Image from 'gatsby-image';
 
 import getClassName from 'tools/getClassName';
 
-import CenteredContent from '../layout/CenteredContent';
-import Headline from '../core/Headline';
+import Headline from 'components/core/Headline';
+import CenteredContent from 'components/layout/CenteredContent';
 import SEO from './seo';
 
 import './Projects.scss';

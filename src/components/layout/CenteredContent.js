@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import getClassName from 'tools/getClassName';
 
 import './CenteredContent.scss';
 
@@ -8,12 +9,13 @@ import './CenteredContent.scss';
     Just a styled component that centers content within the page.
 */
 export default function CenteredContent({children, className, componentRef, ...props}) {
+    const [rootClassName] = getClassName({
+        className,
+        rootClass: 'centered-content',
+    });
+
     return (
-        <section
-            {...props}
-            className={classnames('centered-content', className)}
-            ref={componentRef}
-        >
+        <section {...props} className={rootClassName} ref={componentRef}>
             {children}
         </section>
     );

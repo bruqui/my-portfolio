@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
+// tools
 import getClassName from 'tools/getClassName';
 
+// core
 import {MenuItem, SimpleMenu} from 'components/core/menu';
-
 import IconButton from 'components/core/IconButton';
 import getLinks from './getLinks';
-import NavLink from './NavLink';
 
-import './HeaderNavMenu.scss';
+import NavLink from './NavLink';
 
 export default function HeaderNavMenu({className, selected}) {
     const [rootClassName, getChildClass] = getClassName({
         className,
-        rootClass: 'nav-menu',
+        rootClass: 'header-nav-menu',
     });
     const [selectedVal, setSelectedVal] = useState();
 
@@ -43,7 +43,7 @@ export default function HeaderNavMenu({className, selected}) {
                         key={link.children}
                         selected={[link.to, link.href].includes(selectedVal)}
                     >
-                        <NavLink {...link} onSelect={handleSelect} />
+                        <NavLink {...link} onSelect={handleSelect} menu />
                     </MenuItem>
                 ))}
             </SimpleMenu>

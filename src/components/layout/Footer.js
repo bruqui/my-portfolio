@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import getClassName from 'tools/getClassName';
 
 import './Footer.scss';
 
@@ -8,8 +9,13 @@ import './Footer.scss';
     Main footer component for the site.
 */
 export default function Footer({className}) {
+    const [rootClassName] = getClassName({
+        className,
+        rootClass: 'footer',
+    });
+
     return (
-        <footer className={classnames(className, 'footer')}>
+        <footer className={rootClassName}>
             © {new Date().getFullYear()}, BEhiveTech.com{' '}
         </footer>
     );

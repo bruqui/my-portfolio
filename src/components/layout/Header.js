@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// tools
 import getClassName from 'tools/getClassName';
+
+// core
 import Link from 'components/core/Link';
+
+// layout
 import HeaderNav from './header-nav/HeaderNav';
 import HeaderNavMenu from './header-nav/HeaderNavMenu';
+
+// assets
 import Logo from '../../../static/assets/behivetech-logo.svg';
 
 import './Header.scss';
@@ -20,6 +27,7 @@ export default function Header({className, fixed}) {
         modifiers: {fixed},
     });
 
+    // Have to set an inline style on the logo. SVGs don't really work with classNames
     return (
         <header className={rootClassName}>
             <Link to="/" className={getChildClass('logo-link')}>

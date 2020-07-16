@@ -2,14 +2,7 @@
 
 .button {
     margin-right: 0.3125rem;
-
-    &__spinner {
-        color: $color-on-primary;
-    }
-
-    &--outlined {
-        color: $color-on-surface;
-    }
+    color: $color-on-surface;
 
     &--secondary {
         &.button {

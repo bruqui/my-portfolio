@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql, useStaticQuery} from 'gatsby';
-import classnames from 'classnames';
 
+// tools
+import getClassName from 'tools/getClassName';
+
+// layout
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 
-import './Layout.scss';
-import 'styles/index.scss';
+// Import order is important here to insure styles are overridden by the following scss file.
 import 'styles/material-icons.scss';
 import 'styles/material-styles.scss';
+import 'styles/index.scss';
+import './Layout.scss';
 
 /**
     Main layout component for the site. Passes on if the header should be fixed
@@ -29,13 +33,21 @@ export default function Layout({children, className, mainProps}) {
         }
     `);
 
+    const [rootClassName, getChildClass] = getClassName({
+        className,
+        rootClass: 'layout',
+    });
+
     return (
-        <section className={classnames('layout', className)}>
-            <Header className="layout__header" siteTitle={data.site.siteMetadata.title} />
-            <Main className="layout__main" {...mainProps}>
+        <section className={rootClassName}>
+            <Header
+                className={getChildClass('header')}
+                siteTitle={data.site.siteMetadata.title}
+            />
+            <Main className={getChildClass('main')} {...mainProps}>
                 {children}
             </Main>
-            <Footer className="layout__footer" />
+            <Footer className={getChildClass('footer')} />
         </section>
     );
 }

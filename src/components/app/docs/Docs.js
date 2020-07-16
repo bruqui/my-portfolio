@@ -15,7 +15,7 @@ export default function Docs({children, className}) {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [rootClassName, getChildClass] = getClassName({
         className,
-        rootClass: 'docs-layout',
+        rootClass: 'docs',
     });
 
     function toggleDrawerOpen() {

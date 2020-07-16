@@ -6,8 +6,6 @@ import getLinks from './getLinks';
 
 import NavLink from './NavLink';
 
-import './HeaderNav.scss';
-
 /**
     Main navigation for the site in the header.
 */

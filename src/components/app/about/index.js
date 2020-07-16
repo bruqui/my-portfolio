@@ -7,7 +7,7 @@ import getClassName from 'tools/getClassName';
 
 import Badge from 'components/core/Badge';
 import Headline from 'components/core/Headline';
-import CenteredContent from '../../layout/CenteredContent';
+import CenteredContent from 'components/layout/CenteredContent';
 import AboutCard from './AboutCard';
 import SEO from '../seo';
 

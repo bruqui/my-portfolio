@@ -2,12 +2,17 @@ import React, {useRef} from 'react';
 import {graphql, useStaticQuery} from 'gatsby';
 import Image from 'gatsby-image';
 
-import About from '../components/app/about';
-import Button from '../components/core/Button';
-import Headline from '../components/core/Headline';
-import Layout from '../components/layout/Layout';
-import Projects from '../components/app/Projects';
-import SEO from '../components/app/seo';
+// core
+import Button from 'components/core/Button';
+import Headline from 'components/core/Headline';
+
+// layout
+import Layout from 'components/layout/Layout';
+
+// app
+import About from 'components/app/about';
+import Projects from 'components/app/Projects';
+import SEO from 'components/app/seo';
 
 import './index.scss';
 
