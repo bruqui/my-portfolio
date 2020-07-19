@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    // Fixes an overall page scrolling issue on some devices
+    // Fixes an overall page scrolling issue on some devices; however,
+    // even this is a little flakey when changing perspective from vertical to
+    // horizontal on iOS.
     max-height: -webkit-fill-available;
 
     &__main {

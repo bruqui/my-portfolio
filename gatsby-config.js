@@ -1,5 +1,8 @@
 const sass = require('sass');
 const path = require('path');
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
     siteMetadata: {
@@ -27,10 +30,12 @@ module.exports = {
         // {
         //     resolve: `gatsby-source-contentful`,
         //     options: {
-        //         spaceId: `your_space_id`,
+        //         spaceId: process.env.CONTENTFUL_SPACE_ID,
         //         // Learn about environment variables: https://gatsby.dev/env-vars
         //         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         //         downloadLocal: true,
+        //         // host: 'cdn.contentful.com',
+        //         environment: process.env.CONTENTFUL_ACCESS_ENVIRONMENT,
         //     },
         // },
         {

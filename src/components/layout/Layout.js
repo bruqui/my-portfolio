@@ -6,7 +6,7 @@ import {graphql, useStaticQuery} from 'gatsby';
 import getClassName from 'tools/getClassName';
 
 // layout
-import Header from './Header';
+import {Header} from './header';
 import Footer from './Footer';
 import Main from './Main';
 
