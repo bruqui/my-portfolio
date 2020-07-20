@@ -1,13 +1,26 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import/prefer-default-export, react/display-name, react/prop-types */
+/* eslint-disable import/prefer-default-export, react/display-name, react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import Providers from './src/components/providers/Providers';
 
-
-export function wrapRootElement({children}) {
-    return <Providers>{children}</Providers>;
+export function wrapRootElement({element}) {
+    return <Providers>{element}</Providers>;
 }
 
-wrapRootElement.propTypes = {
-    children: PropTypes.node,
-};
+// const React = require('react');
+// const Providers = require('./src/components/providers/Providers');
+
+// exports.wrapRootElement = ({element}) => <Providers>{element}</Providers>;
+// const PreBody = () => <div>pre body</div>;
+
+// exports.replaceRenderer = ({
+//     pathname,
+//     setBodyAttributes,
+//     setHtmlAttributes,
+//     setPreBodyComponents,
+// }) => {
+//     setHtmlAttributes({data: pathname});
+//     setBodyAttributes({data: pathname});
+//     setPreBodyComponents([PreBody]);
+// };

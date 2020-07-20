@@ -1,4 +1,4 @@
-@import '../../styles/_globals';
+@import '_globals';
 
 .layout {
     display: flex;
@@ -8,6 +8,7 @@
     // even this is a little flakey when changing perspective from vertical to
     // horizontal on iOS.
     max-height: -webkit-fill-available;
+    @include print;
 
     &__main {
         background-color: $color-surface;

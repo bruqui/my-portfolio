@@ -26,18 +26,25 @@ module.exports = {
     },
     plugins: [
         'gatsby-plugin-resolve-src',
+        {
+            resolve: 'gatsby-plugin-pdf',
+            options: {
+                paths: ['resume'],
+                pdfGeneratorKey: process.env.PDF_GENERATION, // netlify or development
+            },
+        },
         '@bruqui/gatsby-plugin-react-helmet-async',
-        // {
-        //     resolve: `gatsby-source-contentful`,
-        //     options: {
-        //         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        //         // Learn about environment variables: https://gatsby.dev/env-vars
-        //         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        //         downloadLocal: true,
-        //         // host: 'cdn.contentful.com',
-        //         environment: process.env.CONTENTFUL_ACCESS_ENVIRONMENT,
-        //     },
-        // },
+        {
+            resolve: `gatsby-source-contentful`,
+            options: {
+                spaceId: process.env.CONTENTFUL_SPACE_ID,
+                // Learn about environment variables: https://gatsby.dev/env-vars
+                accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+                downloadLocal: true,
+                // host: 'cdn.contentful.com',
+                environment: process.env.CONTENTFUL_ACCESS_ENVIRONMENT,
+            },
+        },
         {
             resolve: 'gatsby-plugin-module-resolver',
             options: {

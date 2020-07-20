@@ -31,7 +31,12 @@ export default function Docs({children, className}) {
                     toggleDrawerOpen={toggleDrawerOpen}
                 />
                 <div className={getChildClass('children')}>
-                    <Button onClick={toggleDrawerOpen} raised secondary>
+                    <Button
+                        className={getChildClass('drawer-button')}
+                        onClick={toggleDrawerOpen}
+                        raised
+                        secondary
+                    >
                         Open Docs Menu
                     </Button>
                     {children}

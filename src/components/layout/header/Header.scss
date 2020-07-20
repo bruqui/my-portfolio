@@ -52,7 +52,7 @@
         text-align: right;
     }
 
-    @media all and (min-width: 720px) {
+    @media all and (min-width: 800px) {
         &__nav {
             line-height: 2.25rem;
             display: block;
@@ -75,5 +75,9 @@
         &__svg-link {
             margin-right: -0.5rem;
         }
+    }
+
+    @media print {
+        display: none;
     }
 }

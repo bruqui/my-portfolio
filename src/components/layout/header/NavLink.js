@@ -23,9 +23,11 @@ export default function NavLink({children, className, onSelect, href, to, menu})
     };
 
     function handleGetLinkProps({isCurrent}) {
-        if (renderFinished && isCurrent) {
-            onSelect(to || href);
-        }
+        return () => {
+            if (renderFinished && isCurrent) {
+                onSelect(to || href);
+            }
+        };
     }
 
     // If this is a link in the menu, make it a MenuLink

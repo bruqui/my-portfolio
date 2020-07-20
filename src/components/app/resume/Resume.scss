@@ -1,0 +1,15 @@
+.resume {
+    max-width: 800px;
+    position: relative;
+
+    &__content-right {
+        position: absolute;
+        right: 5%;
+    }
+
+    @media print {
+        &__content-right {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "gatsby-plugin-pdf",
+    "version": "1.0.0",
+    "description": "Genereates PDFs of pages using puppeteer",
+    "main": "gatsby-node.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Bruce Smith",
+    "license": "ISC",
+    "dependencies": {
+        "chrome-aws-lambda": "^3.1.1",
+        "puppeteer": "^5.2.0",
+        "puppeteer-core": "^1.9.0"
+    }
+}

@@ -3,4 +3,8 @@
     font-size: 0.65rem;
     padding: 0.25rem 0.5rem;
     z-index: 1;
+
+    @media print {
+        display: none;
+    }
 }

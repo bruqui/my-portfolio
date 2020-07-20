@@ -6,8 +6,8 @@ import {graphql, useStaticQuery} from 'gatsby';
 import getClassName from 'tools/getClassName';
 
 // layout
-import {Header} from './header';
 import Footer from './Footer';
+import Header from './header';
 import Main from './Main';
 
 // Import order is important here to insure styles are overridden by the following scss file.

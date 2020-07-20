@@ -8,6 +8,7 @@
     &__button {
         z-index: 0;
     }
+
     &__children,
     &__drawer {
         height: 100%;
@@ -22,5 +23,28 @@
 
     pre div {
         white-space: pre;
+    }
+
+    @media all and (min-width: 800px) {
+        &__container {
+            display: flex;
+        }
+
+        &__drawer {
+            flex: 0 0 auto;
+        }
+
+        &__drawer-button {
+            display: none;
+        }
+        &__children {
+            flex: 1 1 auto;
+        }
+    }
+
+    @media print {
+        &__drawer-button {
+            display: none;
+        }
     }
 }

@@ -5,12 +5,8 @@ export default function getLinks() {
             to: '/',
         },
         {
-            children: 'about',
-            to: '/about',
-        },
-        {
-            children: 'projects',
-            to: '/projects',
+            children: 'resume',
+            to: '/resume',
         },
         {
             children: 'site docs',

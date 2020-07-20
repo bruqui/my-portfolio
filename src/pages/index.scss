@@ -1,4 +1,4 @@
-@import '../styles/globals';
+@import '_globals';
 
 .index-page {
     &__container {
@@ -28,11 +28,29 @@
             left: 45%;
             transform: translate(-42%, -65%);
         }
+
+        @include print;
+
+        @media print {
+            left: 0;
+            top: 0;
+            position: relative;
+            text-shadow: none;
+            transform: translate(0, 0);
+
+            button {
+                display: none;
+            }
+        }
     }
 
     &__image {
         height: 93vh;
         z-index: 0;
+
+        @media print {
+            display: none;
+        }
     }
 
     &__heading {

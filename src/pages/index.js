@@ -10,7 +10,7 @@ import Headline from 'components/core/Headline';
 import Layout from 'components/layout/Layout';
 
 // app
-import About from 'components/app/about';
+import About from 'components/app/about/';
 import Projects from 'components/app/Projects';
 import SEO from 'components/app/seo';
 

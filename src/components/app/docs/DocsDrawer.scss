@@ -33,4 +33,17 @@
         transform: translateX(-100%);
         -webkit-transform: translateX(-100%);
     }
+
+    @media all and (min-width: 900px) {
+        position: relative;
+
+        &--closed {
+            transform: translate(0);
+            -webkit-transform: translateX(0);
+        }
+    }
+
+    @media print {
+        display: none;
+    }
 }
