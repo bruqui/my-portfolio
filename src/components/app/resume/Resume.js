@@ -12,6 +12,7 @@ import CenteredContent from 'components/layout/CenteredContent';
 // app
 import ContentfulElementParser from 'components/app/ContentfulElementParser';
 import Experiences from './Experiences';
+import Skillsets from './Skillsets';
 
 import './Resume.scss';
 
@@ -31,6 +32,7 @@ export default function Resume({className, resume, experiences}) {
             <Headline level={2}>{resume.name}</Headline>
             <ContentfulElementParser content={resume.summary.json} />
             <Experiences experiences={experiences} />
+            <Skillsets />
         </CenteredContent>
     );
 }

@@ -6,47 +6,14 @@ import {Link} from 'gatsby';
 import getClassName from 'tools/getClassName';
 
 // core
-import Badge from 'components/core/Badge';
 import Headline from 'components/core/Headline';
 
 // app
 import AboutCard from './AboutCard';
 import SEO from '../seo';
+import Skillsets from '../resume/Skillsets';
 
 import './About.scss';
-
-const skillsets = [
-    'Apollo',
-    'AWS',
-    'Babel',
-    'Create React App',
-    'CSS',
-    'Cypress',
-    'Docker',
-    'Gatsby',
-    'GraphQL Prisma',
-    'GraphQL',
-    'Highcharts',
-    'Illustrator',
-    'Javascript',
-    'Jenkins',
-    'Jest',
-    'Karma',
-    'Material Design',
-    'NextJS',
-    'NodeJS',
-    'NPM',
-    'Photoshop',
-    'React Hooks',
-    'React Testing Library',
-    'React',
-    'Redux',
-    'SASS',
-    'Serverless',
-    'SQL',
-    'Webpack',
-    'Yoga GraphQL',
-];
 
 export default function About({componentRef}) {
     const [rootClassName, getChildClass] = getClassName({
@@ -150,14 +117,7 @@ export default function About({componentRef}) {
                     site.
                 </AboutCard>
                 <AboutCard className={getChildClass('card')}>
-                    <Headline level={3} size={5}>
-                        Skillsets
-                    </Headline>
-                    {skillsets.map((skillset) => (
-                        <Badge className={getChildClass('badge')} key={skillset}>
-                            {skillset}
-                        </Badge>
-                    ))}
+                    <Skillsets headlineSize={5} />
                 </AboutCard>
             </div>
         </section>
