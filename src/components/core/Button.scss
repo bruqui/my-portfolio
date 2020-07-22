@@ -2,7 +2,11 @@
 
 .button {
     margin-right: 0.3125rem;
-    color: $color-on-surface;
+
+    // Necessary to override the default style
+    &.mdc-button {
+        color: $color-on-surface;
+    }
 
     &--secondary {
         &.button {

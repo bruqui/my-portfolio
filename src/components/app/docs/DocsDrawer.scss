@@ -15,6 +15,10 @@
         text-transform: capitalize;
     }
 
+    &__link {
+        color: $color-on-surface;
+    }
+
     &__section {
         border-top: 1px solid $color-primary-light;
 

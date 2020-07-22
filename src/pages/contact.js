@@ -1,5 +1,4 @@
 import React, {useReducer} from 'react';
-import PropTypes from 'prop-types';
 import {useForm} from 'react-hook-form';
 
 // tools
@@ -27,7 +26,7 @@ const INITIAL_STATE = {
     submitted: false,
 };
 
-function encode(data) {
+function encodeFormBody(data) {
     return Object.keys(data)
         .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
         .join('&');
@@ -54,24 +53,26 @@ function contactReducer(state, {type, payload = {}}) {
 
     return {...state, ...actions[type]} || state;
 }
-export default function contact({className}) {
+
+export default function contact() {
     const [{error, loading, submitted}, contactDispatch] = useReducer(
         contactReducer,
         INITIAL_STATE,
     );
     const {register: fieldRegister, handleSubmit, errors: fieldErrors} = useForm();
     const [rootClassName, getChildClass] = getClassName({
-        className,
         rootClass: 'contact',
     });
     const fieldClass = getChildClass('field');
 
     function handleOnSubmit(formData) {
         contactDispatch({type: 'SET_LOADING'});
+        // TODO: This is a quick Netlify form submission. Probably want
+        // to move this to a custom API that needs to be built.
         fetch('/', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: encode({'form-name': 'contact', ...formData}),
+            body: encodeFormBody({'form-name': 'contact', ...formData}),
         })
             .then(() => contactDispatch({type: 'SET_LOADING'}))
             .catch((formError) =>
@@ -135,7 +136,6 @@ export default function contact({className}) {
                         />
                         <div data-netlify-recaptcha="true" />
                         <Button
-                            className={fieldClass}
                             disabled={loading}
                             className={getChildClass('button')}
                             icon={loading && <LoadingSpinner small />}
@@ -150,7 +150,3 @@ export default function contact({className}) {
         </Layout>
     );
 }
-
-contact.propTypes = {
-    className: PropTypes.string,
-};
