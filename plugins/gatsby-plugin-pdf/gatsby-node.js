@@ -4,20 +4,20 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 
 /* eslint-disable no-console */
-exports.onCreatePage = ({page, actions}, {paths}) => {
-    const {createPage, deletePage} = actions;
-    const pagePath = page.path.slice(1, -1);
+// exports.onCreatePage = ({page, actions}, {paths}) => {
+//     const {createPage, deletePage} = actions;
+//     const pagePath = page.path.slice(1, -1);
 
-    if (paths.indexOf(pagePath) >= 0) {
-        deletePage(page);
-        createPage({
-            ...page,
-            context: {
-                downloadFile: `${pagePath}.pdf`,
-            },
-        });
-    }
-};
+//     if (paths.indexOf(pagePath) >= 0) {
+//         deletePage(page);
+//         createPage({
+//             ...page,
+//             context: {
+//                 downloadFile: `${pagePath}.pdf`,
+//             },
+//         });
+//     }
+// };
 
 // Only runs during Gatsby Build process (not dev)
 exports.onPostBuild = async (options, {paths, pdfGeneratorKey}) => {

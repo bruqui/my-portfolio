@@ -14,7 +14,7 @@ import './Skillsets.scss';
 
 const SKILLSETS = graphql`
     query SKILLSETS {
-        allContentfulSkill(sort: {order: ASC, fields: name}) {
+        allContentfulSkills(sort: {order: ASC, fields: name}) {
             edges {
                 node {
                     name
@@ -30,7 +30,7 @@ export default function Skillsets({className, headlineSize}) {
         rootClass: 'skillsets',
     });
     const {
-        allContentfulSkill: {edges: skills},
+        allContentfulSkills: {edges: skills},
     } = useStaticQuery(SKILLSETS);
 
     return (

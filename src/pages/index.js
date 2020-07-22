@@ -5,6 +5,7 @@ import Image from 'gatsby-image';
 // core
 import Button from 'components/core/Button';
 import Headline from 'components/core/Headline';
+import LoadingSpinner from 'components/core/LoadingSpinner';
 
 // layout
 import Layout from 'components/layout/Layout';

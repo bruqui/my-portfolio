@@ -27,6 +27,13 @@ module.exports = {
     plugins: [
         'gatsby-plugin-resolve-src',
         {
+            resolve: 'gatsby-plugin-module-resolver',
+            options: {
+                root: './src', // <- will be used as a root dir
+                aliases: {},
+            },
+        },
+        {
             resolve: 'gatsby-plugin-pdf',
             options: {
                 paths: ['resume'],
@@ -43,13 +50,6 @@ module.exports = {
                 downloadLocal: true,
                 // host: 'cdn.contentful.com',
                 environment: process.env.CONTENTFUL_ACCESS_ENVIRONMENT,
-            },
-        },
-        {
-            resolve: 'gatsby-plugin-module-resolver',
-            options: {
-                root: './src', // <- will be used as a root dir
-                aliases: {},
             },
         },
         {

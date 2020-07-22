@@ -1,0 +1,21 @@
+.contact {
+    &__form-container {
+        max-width: 600px;
+        min-width: 90%;
+        padding: 2% 5%;
+    }
+
+    &__button,
+    &__field {
+        margin: 0.5rem 0;
+    }
+
+    @media all and (min-width: 900px) {
+        &__form-container {
+            margin: 0 auto;
+            padding: 5% 10%;
+            min-width: 50%;
+            max-width: 800px;
+        }
+    }
+}

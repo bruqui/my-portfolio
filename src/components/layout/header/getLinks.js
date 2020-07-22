@@ -12,5 +12,9 @@ export default function getLinks() {
             children: 'site docs',
             to: '/docs',
         },
+        {
+            children: 'contact',
+            to: '/contact',
+        },
     ];
 }
