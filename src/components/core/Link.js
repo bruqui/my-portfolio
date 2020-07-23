@@ -16,7 +16,7 @@ export default function Link({
     ...props
 }) {
     const Component = href ? 'a' : GatsbyLink;
-    const [rootClassName, getChildClass] = getClassName({
+    const [rootClassName] = getClassName({
         className,
         rootClass: 'link',
         modifiers: {
@@ -26,7 +26,7 @@ export default function Link({
     });
 
     return (
-        <Component {...props} className={rootClassName}>
+        <Component {...props} className={rootClassName} href={href}>
             {children}
         </Component>
     );

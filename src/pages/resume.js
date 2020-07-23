@@ -32,6 +32,10 @@ export const query = graphql`
         contentfulResumes(id: {eq: "7cf0f08d-ec84-5602-9772-f91e4153c7bf"}) {
             id
             name
+            location
+            website
+            linkedin
+            github
             summary {
                 json
             }

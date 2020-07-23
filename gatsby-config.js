@@ -6,7 +6,7 @@ require('dotenv').config({
 
 module.exports = {
     siteMetadata: {
-        title: 'Bruce Smith Portfolio',
+        title: 'BEhive Tech',
         description: `
             Expert in the design, development and global introduction of advanced
             technologies to meet business, financial, competitive, and customer demands.
@@ -33,6 +33,7 @@ module.exports = {
                 aliases: {},
             },
         },
+        'gatsby-plugin-recaptcha',
         {
             resolve: 'gatsby-plugin-pdf',
             options: {
@@ -40,7 +41,7 @@ module.exports = {
                 pdfGeneratorKey: process.env.PDF_GENERATION, // netlify or development
             },
         },
-        '@bruqui/gatsby-plugin-react-helmet-async',
+        'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-contentful`,
             options: {
@@ -107,8 +108,8 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
-                name: 'gatsby-starter-default',
-                short_name: 'starter',
+                name: 'behive-portfolio',
+                short_name: 'portfolio',
                 start_url: '/',
                 background_color: '#FFFFFF',
                 theme_color: '#1D09C0',

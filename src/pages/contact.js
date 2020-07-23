@@ -1,8 +1,10 @@
-import React, {useReducer} from 'react';
+import React, {useMemo, useReducer} from 'react';
+import Recaptcha from 'components/app/Recaptcha';
 import {useForm} from 'react-hook-form';
 
-// tools
+// tools and hooks
 import getClassName from 'tools/getClassName';
+import useRecaptchaVerified from 'hooks/useRecaptchaVerified';
 
 // core
 import Button from 'components/core/Button';
@@ -22,8 +24,8 @@ import './contact.scss';
 const FORM_NAME = 'contact';
 const REQUIRED = 'This field is required';
 const INITIAL_STATE = {
-    loading: false,
     error: null,
+    loading: false,
     submitted: false,
 };
 
@@ -35,7 +37,6 @@ function encodeFormBody(data) {
 
 function contactReducer(state, {type, payload = {}}) {
     const actions = {
-        RESET_STATE: INITIAL_STATE,
         SET_ERROR: {
             error: payload.error,
             loading: false,
@@ -56,32 +57,57 @@ function contactReducer(state, {type, payload = {}}) {
 }
 
 export default function contact() {
+    const {verified} = useRecaptchaVerified();
     const [{error, loading, submitted}, contactDispatch] = useReducer(
         contactReducer,
         INITIAL_STATE,
     );
+    const formDisabled = useMemo(() => !verified || loading, [verified, loading]);
     const {register: fieldRegister, handleSubmit, errors: fieldErrors} = useForm();
     const [rootClassName, getChildClass] = getClassName({
-        rootClass: 'contact',
+        rootClass: 'contact-page',
     });
-    const fieldClass = getChildClass('field');
 
     function handleOnSubmit(formData) {
-        contactDispatch({type: 'SET_LOADING'});
-        // TODO: This is a quick Netlify form submission. Probably want
-        // to move this to a custom API that needs to be built.
-        fetch('/', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: encodeFormBody({'form-name': FORM_NAME, ...formData}),
-        })
-            .then((response) => {
-                contactDispatch({type: 'SET_SUBMITTED'});
-                console.log(response);
+        if (!formDisabled) {
+            contactDispatch({type: 'SET_LOADING'});
+            // TODO: This is a quick Netlify form submission. Probably want
+            // to move this to a custom API that needs to be built.
+            const formBody = encodeFormBody({...formData, 'form-name': FORM_NAME});
+
+            fetch('/contact', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: formBody,
             })
-            .catch((formError) =>
-                contactDispatch({type: 'SET_ERROR', payload: {formError}}),
-            );
+                .then((response) => {
+                    contactDispatch({type: 'SET_SUBMITTED'});
+                })
+                .catch((formError) =>
+                    contactDispatch({type: 'SET_ERROR', payload: {formError}}),
+                );
+        }
+    }
+
+    function getFieldProps(fieldName) {
+        const fieldVerify =
+            fieldName === 'email'
+                ? {
+                    required: REQUIRED,
+                    pattern: {
+                        value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                        message: 'A valid email address is required',
+                    },
+                }
+                : {required: REQUIRED};
+        return {
+            className: getChildClass('field'),
+            disabled: loading,
+            fieldError: fieldErrors[fieldName],
+            id: fieldName,
+            inputRef: fieldRegister(fieldVerify),
+            name: fieldName,
+        };
     }
 
     return (
@@ -92,8 +118,8 @@ export default function contact() {
                 {submitted && <span>Form submitted</span>}
                 {!submitted && (
                     <form
+                        action="/contact"
                         className={rootClassName}
-                        data-netlify-recaptcha="true"
                         data-netlify="true"
                         data-netlify-honeypot="bot-field"
                         method="POST"
@@ -101,49 +127,22 @@ export default function contact() {
                         onSubmit={handleSubmit(handleOnSubmit)}
                     >
                         <SEO title="Contact" />
+                        <TextField {...getFieldProps('name')} label="Name" />
                         <TextField
-                            className={fieldClass}
-                            disabled={loading}
-                            fieldError={fieldErrors.name}
-                            id="name"
-                            inputRef={fieldRegister({REQUIRED})}
-                            label="Name"
-                            name="name"
-                        />
-                        <TextField
-                            className={fieldClass}
-                            disabled={loading}
-                            fieldError={fieldErrors.email}
-                            id="email"
-                            inputRef={fieldRegister({REQUIRED})}
+                            {...getFieldProps('email')}
                             label="Email"
-                            name="email"
                             type="email"
                         />
+                        <TextField {...getFieldProps('subject')} label="Subject" />
                         <TextField
-                            className={fieldClass}
-                            disabled={loading}
-                            fieldError={fieldErrors.subject}
-                            id="subject"
-                            inputRef={fieldRegister({REQUIRED})}
-                            label="Subject"
-                            name="subject"
-                        />
-                        <TextField
-                            className={fieldClass}
-                            disabled={loading}
-                            fieldError={fieldErrors.message}
-                            id="message"
-                            inputRef={fieldRegister({REQUIRED})}
+                            {...getFieldProps('message')}
                             label="Message"
-                            name="message"
                             outlined
                             textarea
                         />
-                        <div data-netlify-recaptcha="true" />
-                        <input type="hidden" name="form-name" value={FORM_NAME} />
+                        <Recaptcha show={!verified} />
                         <Button
-                            disabled={loading}
+                            disabled={formDisabled}
                             className={getChildClass('button')}
                             icon={loading && <LoadingSpinner small />}
                             raised
