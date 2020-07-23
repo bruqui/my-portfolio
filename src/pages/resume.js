@@ -45,13 +45,14 @@ export const query = graphql`
                     id
                     company
                     contract
-                    startDate
                     endDate
                     locationCity
                     locationState
+                    startDate
                     summary {
                         json
                     }
+                    title
                 }
             }
         }

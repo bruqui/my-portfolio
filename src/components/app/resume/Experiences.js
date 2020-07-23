@@ -79,7 +79,7 @@ Experiences.propTypes = {
                 endDate: PropTypes.string,
                 locationCity: PropTypes.string,
                 locationState: PropTypes.string,
-                summary: PropTypes.string,
+                summary: PropTypes.shape({json: PropTypes.object}),
                 title: PropTypes.string.isRequired,
             }),
         }),

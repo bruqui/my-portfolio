@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
+import Recaptcha from 'react-recaptcha';
 
 import getClassName from 'tools/getClassName';
 // core
@@ -25,11 +26,18 @@ export default function Resume({
     experiences,
     resume,
 }) {
+    const recaptchaInstance = useRef();
     const [rootClassName, getChildClass] = getClassName({className, rootClass: 'resume'});
 
     function handlePrintClick() {
         window.print();
     }
+
+    function handleRecaptchaVerify(response) {
+        console.log(response);
+    }
+
+    function handleResetRecaptcha() {}
 
     return (
         <CenteredContent className={rootClassName}>
@@ -38,6 +46,11 @@ export default function Resume({
                 <IconButton icon="picture_as_pdf" tag="a" href="/download/resume.pdf" />
             </div>
             <Headline level={2}>{resume.name}</Headline>
+            <Recaptcha
+                ref={recaptchaInstance}
+                verifyCallback={handleRecaptchaVerify}
+                sitekey="6LfWJrUZAAAAAGQZOf9IykVMqj2nKFBKB2aOUACM"
+            />
             <ContentfulElementParser content={resume.summary.json} />
             <Experiences experiences={experiences} />
             <Skillsets />
