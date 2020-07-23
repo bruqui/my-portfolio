@@ -19,6 +19,7 @@ import SEO from 'components/app/seo';
 // styles
 import './contact.scss';
 
+const FORM_NAME = 'contact';
 const REQUIRED = 'This field is required';
 const INITIAL_STATE = {
     loading: false,
@@ -72,9 +73,12 @@ export default function contact() {
         fetch('/', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: encodeFormBody({'form-name': 'contact', ...formData}),
+            body: encodeFormBody({'form-name': FORM_NAME, ...formData}),
         })
-            .then(() => contactDispatch({type: 'SET_LOADING'}))
+            .then((response) => {
+                contactDispatch({type: 'SET_SUBMITTED'});
+                console.log(response);
+            })
             .catch((formError) =>
                 contactDispatch({type: 'SET_ERROR', payload: {formError}}),
             );
@@ -90,8 +94,9 @@ export default function contact() {
                         className={rootClassName}
                         data-netlify-recaptcha="true"
                         data-netlify="true"
+                        data-netlify-honeypot="bot-field"
                         method="POST"
-                        name="contact"
+                        name={FORM_NAME}
                         onSubmit={handleSubmit(handleOnSubmit)}
                     >
                         <SEO title="Contact" />
@@ -135,6 +140,7 @@ export default function contact() {
                             textarea
                         />
                         <div data-netlify-recaptcha="true" />
+                        <input type="hidden" name="form-name" value={FORM_NAME} />
                         <Button
                             disabled={loading}
                             className={getChildClass('button')}
