@@ -89,6 +89,7 @@ export default function contact() {
             <div className={getChildClass('form-container')}>
                 <Headline level={2}>Contact Form</Headline>
                 {error && <code className={getChildClass('error')}>{error}</code>}
+                {submitted && <span>Form submitted</span>}
                 {!submitted && (
                     <form
                         className={rootClassName}
