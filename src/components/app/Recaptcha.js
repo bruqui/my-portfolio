@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRecaptcha from 'react-recaptcha';
 
@@ -21,7 +21,6 @@ export default function Recaptcha({className, onVerify, show}) {
     }
 
     function handleExpiredCallback() {
-        console.log('expiring');
         setVerified(false);
         onVerify(false);
     }

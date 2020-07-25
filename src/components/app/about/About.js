@@ -11,7 +11,7 @@ import Headline from 'components/core/Headline';
 // app
 import AboutCard from './AboutCard';
 import SEO from '../seo';
-import Skillsets from '../resume/Skillsets';
+import ResumeSkillsets from '../resume/ResumeSkillsets';
 
 import './About.scss';
 
@@ -117,7 +117,7 @@ export default function About({componentRef}) {
                     site.
                 </AboutCard>
                 <AboutCard className={getChildClass('card')}>
-                    <Skillsets headlineSize={5} />
+                    <ResumeSkillsets headlineSize={5} />
                 </AboutCard>
             </div>
         </section>

@@ -15,11 +15,12 @@ import CenteredContent from 'components/layout/CenteredContent';
 // app
 import ContentfulElementParser from 'components/app/ContentfulElementParser';
 import Certifications from './Certifications';
+import CodeExamples from './CodeExamples';
 import Education from './Education';
 import Experiences from './Experiences';
 import PrivateInfo from './PrivateInfo';
 import Recaptcha from '../Recaptcha';
-import Skillsets from './Skillsets';
+import ResumeSkillsets from './ResumeSkillsets';
 
 import './Resume.scss';
 
@@ -55,26 +56,29 @@ export default function Resume({
                 <IconButton icon="picture_as_pdf" tag="a" href="/download/resume.pdf" />
             </div>
             <Headline level={2}>{resume.name}</Headline>
-            <div>{resume.location}</div>
-            <Recaptcha show={!verified && showPersonalInfo} />
-            {!showPersonalInfo && (
-                <Button
-                    className={getChildClass('button')}
-                    onClick={handleShowPeronalInfo}
-                    raised
-                >
-                    Reveal Contact Info
-                </Button>
-            )}
-            <PrivateInfo show={verified && showPersonalInfo} />
-            <div className={getChildClass('print-only')}>
-                <div>Website: {resume.website}</div>
-                <div>LinkedIn: {resume.linkedin}</div>
-                <div>Github: {resume.github}</div>
+            <div className={getChildClass('main-info')}>
+                <div>{resume.location}</div>
+                <Recaptcha show={!verified && showPersonalInfo} />
+                {!showPersonalInfo && (
+                    <Button
+                        className={getChildClass('button')}
+                        onClick={handleShowPeronalInfo}
+                        raised
+                    >
+                        Reveal Contact Info
+                    </Button>
+                )}
+                <PrivateInfo show={verified && showPersonalInfo} />
+                <div className={getChildClass('print-only')}>
+                    <div>Website: {resume.website}</div>
+                    <div>LinkedIn: {resume.linkedin}</div>
+                    <div>Github: {resume.github}</div>
+                </div>
             </div>
             <ContentfulElementParser content={resume.summary.json} />
             <Experiences experiences={experiences} />
-            <Skillsets />
+            <ResumeSkillsets />
+            <CodeExamples />
             <Education education={education} />
             <Certifications certifications={certifications} />
         </CenteredContent>
